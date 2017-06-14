@@ -1,0 +1,619 @@
+2017/06/13 09:40:06 [I]                                                                                                ！！当前运行模式为：[ 单机 ] 模式！！
+2017/06/13 09:41:30 [I]                                                                                                ！！当前运行模式为：[ 单机 ] 模式！！
+2017/06/13 09:44:59 [I]                                                                                                ！！当前运行模式为：[ 单机 ] 模式！！
+2017/06/13 09:45:26 [I]  *     不使用代理IP
+
+2017/06/13 09:45:26 [I]  *     执行任务总数(任务数[*自定义配置数])为 1 个
+
+2017/06/13 09:45:26 [I]  *     采集引擎池容量为 1
+
+2017/06/13 09:45:26 [I]  *     并发协程最多 20 个
+
+2017/06/13 09:45:26 [I]  *     默认随机停顿 150~600 毫秒
+
+2017/06/13 09:45:26 [P]  *                                                                                                 —— 开始抓取，请耐心等候 ——
+2017/06/13 09:45:26 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:45:26 [D]  *     Start: http://s.1688.com/selloffer/offer_search.htm?enableAsync=false&earseDirect=false&button_click=top&pageSize=60&n=y&offset=3&uniqfield=pic_tag_id&keyins=	
+&beginPage=1
+2017/06/13 09:45:28 [C] [消息提示：| 任务：阿里巴巴产品搜索 | KEYIN：	
+ | 规则：生成请求] 由于跳转AJAX问题，目前只能每个子类抓取 1 页……
+
+2017/06/13 09:45:28 [I]  *     Success: http://s.1688.com/selloffer/offer_search.htm?enableAsync=false&earseDirect=false&button_click=top&pageSize=60&n=y&offset=3&uniqfield=pic_tag_id&keyins=	
+&beginPage=1
+
+2017/06/13 09:45:28 [P]  *     [任务小计：阿里巴巴产品搜索 | KEYIN：	
+]   无采集结果，用时 2.4661411s！
+
+2017/06/13 09:45:28 [I]  * 
+2017/06/13 09:45:28 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:45:28 [I]  * 
+2017/06/13 09:45:28 [P]  *                            —— 本次无采集结果，实爬【成功 1 URL + 失败 0 URL = 合计 1 URL】，耗时【2.4661411s】 ——
+2017/06/13 09:45:28 [I]  * 
+2017/06/13 09:45:28 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:45:55 [I]  *     不使用代理IP
+
+2017/06/13 09:45:55 [I]  *     执行任务总数(任务数[*自定义配置数])为 1 个
+
+2017/06/13 09:45:55 [I]  *     采集引擎池容量为 1
+
+2017/06/13 09:45:55 [I]  *     并发协程最多 20 个
+
+2017/06/13 09:45:55 [I]  *     默认随机停顿 150~600 毫秒
+
+2017/06/13 09:45:55 [P]  *                                                                                                 —— 开始抓取，请耐心等候 ——
+2017/06/13 09:45:55 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:45:55 [D]  *     Start: http://www.miyabaobei.com/
+2017/06/13 09:45:56 [I]  *     Success: http://www.miyabaobei.com/
+
+2017/06/13 09:45:56 [P]  *     [任务小计：蜜芽宝贝 | KEYIN：]   无采集结果，用时 1.1240643s！
+
+2017/06/13 09:45:56 [I]  * 
+2017/06/13 09:45:56 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:45:56 [I]  * 
+2017/06/13 09:45:56 [P]  *                            —— 本次无采集结果，实爬【成功 1 URL + 失败 0 URL = 合计 1 URL】，耗时【1.1240643s】 ——
+2017/06/13 09:45:56 [I]  * 
+2017/06/13 09:45:56 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:46:11 [I]  *     不使用代理IP
+
+2017/06/13 09:46:11 [I]  *     执行任务总数(任务数[*自定义配置数])为 1 个
+
+2017/06/13 09:46:11 [I]  *     采集引擎池容量为 1
+
+2017/06/13 09:46:11 [I]  *     并发协程最多 20 个
+
+2017/06/13 09:46:11 [I]  *     默认随机停顿 150~600 毫秒
+
+2017/06/13 09:46:11 [P]  *                                                                                                 —— 开始抓取，请耐心等候 ——
+2017/06/13 09:46:11 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:46:11 [D]  *     Start: http://club.autohome.com.cn/bbs/forum-o-200042-1.html?qaType=-1#pvareaid=101061
+2017/06/13 09:46:12 [I]  *     Success: http://club.autohome.com.cn/bbs/forum-o-200042-1.html?qaType=-1#pvareaid=101061
+
+2017/06/13 09:46:12 [D]  *     Start: http://club.autohome.com.cn
+2017/06/13 09:46:12 [I]  *     Success: http://club.autohome.com.cn
+
+2017/06/13 09:46:12 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63893124-1.html
+2017/06/13 09:46:12 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63893124-1.html
+
+2017/06/13 09:46:13 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63892784-1.html
+2017/06/13 09:46:13 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63892784-1.html
+
+2017/06/13 09:46:13 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-29899173-1.html
+2017/06/13 09:46:13 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-29899173-1.html
+
+2017/06/13 09:46:13 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63396926-1.html
+2017/06/13 09:46:14 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63396926-1.html
+
+2017/06/13 09:46:14 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63923693-1.html
+2017/06/13 09:46:14 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-62863375-1.html#pvareaid=2199101
+2017/06/13 09:46:14 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63923693-1.html
+
+2017/06/13 09:46:14 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-62863375-1.html#pvareaid=2199101
+
+2017/06/13 09:46:15 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-62237592-1.html
+2017/06/13 09:46:15 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-62237592-1.html
+
+2017/06/13 09:46:15 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63764763-1.html
+2017/06/13 09:46:15 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63764763-1.html
+
+2017/06/13 09:46:15 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63921894-1.html
+2017/06/13 09:46:15 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63921894-1.html
+
+2017/06/13 09:46:16 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63923057-1.html
+2017/06/13 09:46:16 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63923057-1.html
+
+2017/06/13 09:46:16 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63928804-1.html
+2017/06/13 09:46:16 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63928804-1.html
+
+2017/06/13 09:46:16 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63911675-1.html
+2017/06/13 09:46:16 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63911675-1.html
+
+2017/06/13 09:46:17 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63919373-1.html
+2017/06/13 09:46:17 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63919373-1.html
+
+2017/06/13 09:46:17 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63923446-1.html
+2017/06/13 09:46:17 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63878413-1.html
+2017/06/13 09:46:18 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63878413-1.html
+
+2017/06/13 09:46:18 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63205324-1.html#pvareaid=2199101
+2017/06/13 09:46:18 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63205324-1.html#pvareaid=2199101
+
+2017/06/13 09:46:18 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63923446-1.html
+
+2017/06/13 09:46:18 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63862465-1.html
+2017/06/13 09:46:18 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63862465-1.html
+
+2017/06/13 09:46:19 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63914447-1.html
+2017/06/13 09:46:19 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63914447-1.html
+
+2017/06/13 09:46:19 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63528860-1.html
+2017/06/13 09:46:19 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63528860-1.html
+
+2017/06/13 09:46:19 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63915221-1.html
+2017/06/13 09:46:19 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-61257266-1.html
+2017/06/13 09:46:19 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63839582-1.html
+2017/06/13 09:46:20 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63926464-1.html
+2017/06/13 09:46:20 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63926464-1.html
+
+2017/06/13 09:46:20 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63920800-1.html
+2017/06/13 09:46:20 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63920800-1.html
+
+2017/06/13 09:46:21 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63928235-1.html
+2017/06/13 09:46:21 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63928235-1.html
+
+2017/06/13 09:46:21 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63839582-1.html
+
+2017/06/13 09:46:21 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63927819-1.html
+2017/06/13 09:46:21 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63915221-1.html
+
+2017/06/13 09:46:21 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63927819-1.html
+
+2017/06/13 09:46:22 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-61257266-1.html
+
+2017/06/13 09:46:22 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63928201-1.html
+2017/06/13 09:46:22 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63924516-1.html
+2017/06/13 09:46:22 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63924516-1.html
+
+2017/06/13 09:46:22 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63928201-1.html
+
+2017/06/13 09:46:23 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-60072987-1.html
+2017/06/13 09:46:23 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-60072987-1.html
+
+2017/06/13 09:46:23 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-62566564-1.html
+2017/06/13 09:46:23 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-62566564-1.html
+
+2017/06/13 09:46:23 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63883529-1.html
+2017/06/13 09:46:23 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63883529-1.html
+
+2017/06/13 09:46:24 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63852410-1.html
+2017/06/13 09:46:24 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63913497-1.html
+2017/06/13 09:46:24 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63913497-1.html
+
+2017/06/13 09:46:24 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63852410-1.html
+
+2017/06/13 09:46:25 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63585366-1.html#pvareaid=2199101
+2017/06/13 09:46:25 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63585366-1.html#pvareaid=2199101
+
+2017/06/13 09:46:25 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-62247061-1.html
+2017/06/13 09:46:25 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-62247061-1.html
+
+2017/06/13 09:46:25 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63926351-1.html
+2017/06/13 09:46:25 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63926351-1.html
+
+2017/06/13 09:46:25 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63908247-1.html
+2017/06/13 09:46:26 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63908247-1.html
+
+2017/06/13 09:46:26 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63216157-1.html#pvareaid=2199101
+2017/06/13 09:46:26 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-62794610-1.html#pvareaid=2199101
+2017/06/13 09:46:26 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-62794610-1.html#pvareaid=2199101
+
+2017/06/13 09:46:27 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63216157-1.html#pvareaid=2199101
+
+2017/06/13 09:46:27 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63914716-1.html
+2017/06/13 09:46:27 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63914716-1.html
+
+2017/06/13 09:46:27 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63576746-1.html
+2017/06/13 09:46:27 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63576746-1.html
+
+2017/06/13 09:46:28 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63125047-1.html#pvareaid=2199101
+2017/06/13 09:46:28 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63125047-1.html#pvareaid=2199101
+
+2017/06/13 09:46:28 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63404458-1.html#pvareaid=2199101
+2017/06/13 09:46:28 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63404458-1.html#pvareaid=2199101
+
+2017/06/13 09:46:29 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-58063410-1.html#pvareaid=2199101
+2017/06/13 09:46:29 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-58063410-1.html#pvareaid=2199101
+
+2017/06/13 09:46:29 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63919364-1.html
+2017/06/13 09:46:29 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63215555-1.html#pvareaid=2199101
+2017/06/13 09:46:29 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63919364-1.html
+
+2017/06/13 09:46:29 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-45924036-1.html
+2017/06/13 09:46:30 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63928535-1.html
+2017/06/13 09:46:30 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-45924036-1.html
+
+2017/06/13 09:46:30 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63928535-1.html
+
+2017/06/13 09:46:30 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-60851367-1.html
+2017/06/13 09:46:30 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-60851367-1.html
+
+2017/06/13 09:46:30 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63915207-1.html
+2017/06/13 09:46:30 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63915207-1.html
+
+2017/06/13 09:46:30 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63604790-1.html
+2017/06/13 09:46:31 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63604790-1.html
+
+2017/06/13 09:46:31 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-61487996-1.html
+2017/06/13 09:46:31 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-61487996-1.html
+
+2017/06/13 09:46:31 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63215555-1.html#pvareaid=2199101
+
+2017/06/13 09:46:31 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63290510-1.html#pvareaid=2199101
+2017/06/13 09:46:32 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63681970-1.html
+2017/06/13 09:46:32 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63681970-1.html
+
+2017/06/13 09:46:32 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63420545-1.html#pvareaid=2199101
+2017/06/13 09:46:32 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63420545-1.html#pvareaid=2199101
+
+2017/06/13 09:46:32 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63515335-1.html
+2017/06/13 09:46:33 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63290510-1.html#pvareaid=2199101
+
+2017/06/13 09:46:33 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63515335-1.html
+
+2017/06/13 09:46:33 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63898317-1.html
+2017/06/13 09:46:33 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63918281-1.html
+2017/06/13 09:46:33 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-59177717-1.html
+2017/06/13 09:46:33 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63918281-1.html
+
+2017/06/13 09:46:34 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-59177717-1.html
+
+2017/06/13 09:46:34 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63908457-1.html
+2017/06/13 09:46:34 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63898317-1.html
+
+2017/06/13 09:46:34 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63908457-1.html
+
+2017/06/13 09:46:34 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-61652065-1.html#pvareaid=2199101
+2017/06/13 09:46:34 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63928524-1.html
+2017/06/13 09:46:35 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63748654-1.html
+2017/06/13 09:46:35 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63928524-1.html
+
+2017/06/13 09:46:35 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63681645-1.html
+2017/06/13 09:46:35 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-50314602-1.html
+2017/06/13 09:46:36 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63748654-1.html
+
+2017/06/13 09:46:36 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63681645-1.html
+
+2017/06/13 09:46:36 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-57048101-1.html
+2017/06/13 09:46:36 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-50314602-1.html
+
+2017/06/13 09:46:36 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63807160-1.html
+2017/06/13 09:46:36 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-61652065-1.html#pvareaid=2199101
+
+2017/06/13 09:46:37 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63807160-1.html
+
+2017/06/13 09:46:37 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-56363499-1.html
+2017/06/13 09:46:37 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-56363499-1.html
+
+2017/06/13 09:46:37 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-57048101-1.html
+
+2017/06/13 09:46:37 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63702649-1.html
+2017/06/13 09:46:37 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63702649-1.html
+
+2017/06/13 09:46:38 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63928467-1.html
+2017/06/13 09:46:38 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63928467-1.html
+
+2017/06/13 09:46:38 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-61674002-1.html
+2017/06/13 09:46:38 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63247793-1.html
+2017/06/13 09:46:39 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63247793-1.html
+
+2017/06/13 09:46:39 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63928288-1.html
+2017/06/13 09:46:39 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63928288-1.html
+
+2017/06/13 09:46:39 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-61674002-1.html
+
+2017/06/13 09:46:39 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-60424455-1.html#pvareaid=2199101
+2017/06/13 09:46:39 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-60424455-1.html#pvareaid=2199101
+
+2017/06/13 09:46:40 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63911270-1.html
+2017/06/13 09:46:40 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63911270-1.html
+
+2017/06/13 09:46:40 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63922382-1.html
+2017/06/13 09:46:40 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63922382-1.html
+
+2017/06/13 09:46:41 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-54015145-1.html#pvareaid=2199101
+2017/06/13 09:46:41 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-54015145-1.html#pvareaid=2199101
+
+2017/06/13 09:46:41 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63844639-1.html
+2017/06/13 09:46:41 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63844639-1.html
+
+2017/06/13 09:46:41 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63916797-1.html
+2017/06/13 09:46:41 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63916797-1.html
+
+2017/06/13 09:46:42 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-60933168-1.html
+2017/06/13 09:46:42 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63887791-1.html
+2017/06/13 09:46:42 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63887791-1.html
+
+2017/06/13 09:46:42 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-62935909-1.html
+2017/06/13 09:46:42 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-62935909-1.html
+
+2017/06/13 09:46:43 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63347326-1.html
+2017/06/13 09:46:43 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-60933168-1.html
+
+2017/06/13 09:46:43 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63347326-1.html
+
+2017/06/13 09:46:43 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63928303-1.html
+2017/06/13 09:46:43 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63928303-1.html
+
+2017/06/13 09:46:43 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63483067-1.html
+2017/06/13 09:46:44 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63483067-1.html
+
+2017/06/13 09:46:44 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63919376-1.html
+2017/06/13 09:46:44 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63919376-1.html
+
+2017/06/13 09:46:44 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-40971545-1.html
+2017/06/13 09:46:44 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-40971545-1.html
+
+2017/06/13 09:46:45 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63761315-1.html
+2017/06/13 09:46:45 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-55997348-1.html
+2017/06/13 09:46:46 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63152971-1.html
+2017/06/13 09:46:46 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63152971-1.html
+
+2017/06/13 09:46:46 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63761315-1.html
+
+2017/06/13 09:46:46 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-55997348-1.html
+
+2017/06/13 09:46:46 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-61170571-1.html
+2017/06/13 09:46:46 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-61170571-1.html
+
+2017/06/13 09:46:47 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-44120896-1.html
+2017/06/13 09:46:47 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-44120896-1.html
+
+2017/06/13 09:46:47 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63920194-1.html
+2017/06/13 09:46:47 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63920194-1.html
+
+2017/06/13 09:46:48 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-62152790-1.html#pvareaid=2199101
+2017/06/13 09:46:48 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-62152790-1.html#pvareaid=2199101
+
+2017/06/13 09:46:48 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-62827449-1.html
+2017/06/13 09:46:48 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-62827449-1.html
+
+2017/06/13 09:46:48 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-53035961-1.html
+2017/06/13 09:46:48 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-53035961-1.html
+
+2017/06/13 09:46:49 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63910006-1.html
+2017/06/13 09:46:49 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63910006-1.html
+
+2017/06/13 09:46:49 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63927864-1.html
+2017/06/13 09:46:49 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63927864-1.html
+
+2017/06/13 09:46:49 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-24202465-1.html
+2017/06/13 09:46:49 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-24202465-1.html
+
+2017/06/13 09:46:50 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63816786-1.html
+2017/06/13 09:46:50 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63816786-1.html
+
+2017/06/13 09:46:50 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-63855005-1.html
+2017/06/13 09:46:51 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200099-55640240-1.html
+2017/06/13 09:46:51 [D]  *     Start: http://club.autohome.com.cn/bbs/thread-o-200042-63906509-1.html
+2017/06/13 09:46:51 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200042-63906509-1.html
+
+2017/06/13 09:46:51 [D]  *     Start: http://club.autohome.com.cn/bbs/forum-o-200042-2.html?qaType=-1#pvareaid=101061
+2017/06/13 09:46:51 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-63855005-1.html
+
+2017/06/13 09:46:52 [I]  *     Success: http://club.autohome.com.cn/bbs/thread-o-200099-55640240-1.html
+
+2017/06/13 09:46:52 [I]  *     Success: http://club.autohome.com.cn/bbs/forum-o-200042-2.html?qaType=-1#pvareaid=101061
+
+2017/06/13 09:46:52 [I]  * 
+2017/06/13 09:46:52 [P]  *     [数据输出：汽车之家 | KEYIN： | 批次：1]   数据 104 条！
+
+2017/06/13 09:46:52 [I]  *     [添加成功记录]: 106 条
+
+2017/06/13 09:46:52 [I]  * 
+2017/06/13 09:46:52 [P]  *     [任务小计：汽车之家 | KEYIN：]   共采集数据 104 条，用时 41.4443705s！
+
+2017/06/13 09:46:52 [I]  * 
+2017/06/13 09:46:52 [I]  *********************************************************************************************************************************** 
+2017/06/13 09:46:52 [I]  * 
+2017/06/13 09:46:52 [P]  *                            —— 本次合计采集【数据 104 条】， 实爬【成功 106 URL + 失败 0 URL = 合计 106 URL】，耗时【41.4443705s】 ——
+2017/06/13 09:46:52 [I]  * 
+2017/06/13 09:46:52 [I]  *********************************************************************************************************************************** 
+2017/06/13 14:53:54 [I]                                                                                                ！！当前运行模式为：[ 单机 ] 模式！！
+2017/06/13 14:54:06 [I]  *     不使用代理IP
+
+2017/06/13 14:54:06 [I]  *     执行任务总数(任务数[*自定义配置数])为 1 个
+
+2017/06/13 14:54:06 [I]  *     采集引擎池容量为 1
+
+2017/06/13 14:54:06 [I]  *     并发协程最多 20 个
+
+2017/06/13 14:54:06 [I]  *     默认随机停顿 150~600 毫秒
+
+2017/06/13 14:54:06 [P]  *                                                                                                 —— 开始抓取，请耐心等候 ——
+2017/06/13 14:54:06 [I]  *********************************************************************************************************************************** 
+2017/06/13 14:54:06 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=1
+2017/06/13 14:54:06 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=1
+
+2017/06/13 14:54:07 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=2
+2017/06/13 14:54:07 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=2
+
+2017/06/13 14:54:07 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=3
+2017/06/13 14:54:07 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=3
+
+2017/06/13 14:54:07 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=4
+2017/06/13 14:54:08 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=4
+
+2017/06/13 14:54:08 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=5
+2017/06/13 14:54:08 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=5
+
+2017/06/13 14:54:08 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=6
+2017/06/13 14:54:09 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=6
+
+2017/06/13 14:54:09 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=7
+2017/06/13 14:54:09 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=8
+2017/06/13 14:54:09 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=7
+
+2017/06/13 14:54:09 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=8
+
+2017/06/13 14:54:09 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=9
+2017/06/13 14:54:10 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=10
+2017/06/13 14:54:10 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=9
+
+2017/06/13 14:54:10 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=10
+
+2017/06/13 14:54:10 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=11
+2017/06/13 14:54:10 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=11
+
+2017/06/13 14:54:11 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=12
+2017/06/13 14:54:11 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=12
+
+2017/06/13 14:54:11 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=13
+2017/06/13 14:54:11 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=13
+
+2017/06/13 14:54:11 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=14
+2017/06/13 14:54:11 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=14
+
+2017/06/13 14:54:12 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=15
+2017/06/13 14:54:12 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=15
+
+2017/06/13 14:54:12 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=16
+2017/06/13 14:54:12 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=16
+
+2017/06/13 14:54:12 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=17
+2017/06/13 14:54:12 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=17
+
+2017/06/13 14:54:13 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=18
+2017/06/13 14:54:13 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=18
+
+2017/06/13 14:54:13 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=19
+2017/06/13 14:54:13 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=19
+
+2017/06/13 14:54:13 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=20
+2017/06/13 14:54:14 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=20
+
+2017/06/13 14:54:14 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=21
+2017/06/13 14:54:14 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=21
+
+2017/06/13 14:54:14 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=22
+2017/06/13 14:54:14 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=23
+2017/06/13 14:54:14 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=22
+
+2017/06/13 14:54:15 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=23
+
+2017/06/13 14:54:15 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=24
+2017/06/13 14:54:15 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=25
+2017/06/13 14:54:15 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=24
+
+2017/06/13 14:54:15 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=26
+2017/06/13 14:54:15 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=25
+
+2017/06/13 14:54:15 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=26
+
+2017/06/13 14:54:15 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=27
+2017/06/13 14:54:16 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=27
+
+2017/06/13 14:54:16 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=28
+2017/06/13 14:54:16 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=28
+
+2017/06/13 14:54:16 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=29
+2017/06/13 14:54:17 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=29
+
+2017/06/13 14:54:17 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=30
+2017/06/13 14:54:17 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=30
+
+2017/06/13 14:54:17 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=31
+2017/06/13 14:54:18 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=31
+
+2017/06/13 14:54:18 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=32
+2017/06/13 14:54:18 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=32
+
+2017/06/13 14:54:18 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=33
+2017/06/13 14:54:18 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=33
+
+2017/06/13 14:54:19 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=34
+2017/06/13 14:54:19 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=35
+2017/06/13 14:54:19 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=34
+
+2017/06/13 14:54:19 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=35
+
+2017/06/13 14:54:19 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=36
+2017/06/13 14:54:20 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=36
+
+2017/06/13 14:54:20 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=37
+2017/06/13 14:54:20 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=37
+
+2017/06/13 14:54:20 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=38
+2017/06/13 14:54:21 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=39
+2017/06/13 14:54:21 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=38
+
+2017/06/13 14:54:21 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=39
+
+2017/06/13 14:54:21 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=40
+2017/06/13 14:54:21 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=41
+2017/06/13 14:54:21 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=40
+
+2017/06/13 14:54:21 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=41
+
+2017/06/13 14:54:21 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=42
+2017/06/13 14:54:22 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=42
+
+2017/06/13 14:54:22 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=43
+2017/06/13 14:54:22 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=43
+
+2017/06/13 14:54:22 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=44
+2017/06/13 14:54:22 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=44
+
+2017/06/13 14:54:23 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=45
+2017/06/13 14:54:23 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=45
+
+2017/06/13 14:54:23 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=46
+2017/06/13 14:54:24 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=46
+
+2017/06/13 14:54:24 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=47
+2017/06/13 14:54:24 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=47
+
+2017/06/13 14:54:24 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=48
+2017/06/13 14:54:24 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=48
+
+2017/06/13 14:54:24 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=49
+2017/06/13 14:54:25 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=50
+2017/06/13 14:54:25 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=51
+2017/06/13 14:54:25 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=52
+2017/06/13 14:54:26 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=52
+
+2017/06/13 14:54:26 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=53
+2017/06/13 14:54:26 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=54
+2017/06/13 14:54:26 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=53
+
+2017/06/13 14:54:26 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=55
+2017/06/13 14:54:26 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=54
+
+2017/06/13 14:54:26 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=55
+
+2017/06/13 14:54:26 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=56
+2017/06/13 14:54:27 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=56
+
+2017/06/13 14:54:27 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=57
+2017/06/13 14:54:27 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=57
+
+2017/06/13 14:54:27 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=58
+2017/06/13 14:54:28 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=58
+
+2017/06/13 14:54:28 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=59
+2017/06/13 14:54:28 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=59
+
+2017/06/13 14:54:28 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=51
+
+2017/06/13 14:54:28 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=49
+
+2017/06/13 14:54:28 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=60
+2017/06/13 14:54:28 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=50
+
+2017/06/13 14:54:28 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=61
+2017/06/13 14:54:28 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=60
+
+2017/06/13 14:54:29 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=61
+
+2017/06/13 14:54:29 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=62
+2017/06/13 14:54:29 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=62
+
+2017/06/13 14:54:29 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=63
+2017/06/13 14:54:29 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=63
+
+2017/06/13 14:54:29 [D]  *     Start: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=64
+2017/06/13 14:54:30 [I]  *     Success: http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=64
+
+2017/06/13 14:54:30 [I]  * 
+2017/06/13 14:54:30 [P]  *     [数据输出：爱建信托 | KEYIN： | 批次：1]   数据 512 条！
+
+2017/06/13 14:54:30 [I]  *     [添加成功记录]: 64 条
+
+2017/06/13 14:54:30 [I]  * 
+2017/06/13 14:54:30 [P]  *     [任务小计：爱建信托 | KEYIN：]   共采集数据 512 条，用时 23.6063502s！
+
+2017/06/13 14:54:30 [I]  * 
+2017/06/13 14:54:30 [I]  *********************************************************************************************************************************** 
+2017/06/13 14:54:30 [I]  * 
+2017/06/13 14:54:30 [P]  *                            —— 本次合计采集【数据 512 条】， 实爬【成功 64 URL + 失败 0 URL = 合计 64 URL】，耗时【23.6063502s】 ——
+2017/06/13 14:54:30 [I]  * 
+2017/06/13 14:54:30 [I]  *********************************************************************************************************************************** 
+2017/06/13 16:37:09 [I]                                                                                                ！！当前运行模式为：[ 单机 ] 模式！！
