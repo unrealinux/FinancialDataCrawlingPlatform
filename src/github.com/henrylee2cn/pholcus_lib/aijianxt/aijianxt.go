@@ -52,7 +52,7 @@ var Aijianxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 65}, "Rule": "生成请求"}, "生成请求")
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 1}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -73,7 +73,8 @@ var Aijianxt = &Spider{
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						page++
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=" + strconv.Itoa(loop[0]),
+							Url: "http://www.ajxt.com.cn/ajQuery/query.jsp?query=getNetvalue&channelId=77&query1=null",
+							//Url:  "http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=" + strconv.Itoa(loop[0]),
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
 								"level1pages": page,

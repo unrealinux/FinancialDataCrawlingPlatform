@@ -29,7 +29,8 @@ var (
 func Flag() {
 	flag.String("b ******************************************** only for web ******************************************** -b", "", "")
 	// web服务器IP与端口号
-	ip = flag.String("b_ip", "0.0.0.0", "   <Web Server IP>")
+	//ip = flag.String("b_ip", "0.0.0.0", "   <Web Server IP>")
+	ip = flag.String("b_ip", "127.0.0.1", "   <Web Server IP>")
 	port = flag.Int("b_port", 9090, "   <Web Server Port>")
 }
 
@@ -57,9 +58,13 @@ func Run() {
 		go func() {
 			log.Println("[pholcus] Open the default browser after two seconds...")
 			time.Sleep(time.Second * 2)
+			//log.Println("[pholcus] Open the default browser after two seconds...")
 			cmd.Stdout = os.Stdout
+			//log.Println("[pholcus] Open the default browser after two seconds...")
 			cmd.Stderr = os.Stderr
+			//log.Println("[pholcus] Open the default browser after two seconds...")
 			cmd.Run()
+			//log.Println("[pholcus] Open the default browser after two seconds...")
 		}()
 	}
 

@@ -2,6 +2,8 @@
 package exec
 
 import (
+	//"log"
+
 	"os"
 	"os/exec"
 	"os/signal"
@@ -28,6 +30,7 @@ func run(which string) {
 		fallthrough
 	default:
 		ctrl := make(chan os.Signal, 1)
+		//log.Printf("make chan success")
 		signal.Notify(ctrl, os.Interrupt, os.Kill)
 		go web.Run()
 		<-ctrl
