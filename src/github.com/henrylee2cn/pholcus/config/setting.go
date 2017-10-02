@@ -29,7 +29,7 @@ const (
 	mgoconnstring           string = "127.0.0.1:27017"           // mongodb连接字符串
 	mgoconncap              int    = 1024                        // mongodb连接池容量
 	mgoconngcsecond         int64  = 600                         // mongodb连接池GC时间，单位秒
-	mysqlconnstring         string = "root:@tcp(127.0.0.1:3306)" // mysql连接字符串
+	mysqlconnstring         string = "root:@tcp(120.27.40.105:3306)" // mysql连接字符串
 	mysqlconncap            int    = 2048                        // mysql连接池容量
 	mysqlmaxallowedpacketmb int    = 1                           //mysql通信缓冲区的最大长度，单位MB，默认1MB
 	kafkabrokers            string = "127.0.0.1:9092"            //kafka broker字符串,逗号分割

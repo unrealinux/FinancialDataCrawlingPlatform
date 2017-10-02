@@ -26,6 +26,8 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	//"strings"
+	"strings"
 )
 
 func init() {
@@ -106,8 +108,10 @@ var Zxxt = &Spider{
 						titleLine := goq.Children().Eq(1).Text()
 						if titleLine != "产品名称" {
 							mingchen := goq.Children().Eq(1).Text()
-							jingzhi := goq.Children().Eq(3).Text()
-							leijijingzhi := goq.Children().Eq(4).Text()
+							jingzhi := strings.TrimSpace(goq.Children().Eq(3).Text())
+							//jingzhi := goq.Children().Eq(3).Text()
+							leijijingzhi := strings.TrimSpace(goq.Children().Eq(4).Text())
+							//leijijingzhi := goq.Children().Eq(4).Text()
 							guzhiriqi := goq.Children().Eq(7).Text()
 							
 							count++
