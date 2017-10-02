@@ -56,7 +56,7 @@ var Zxxt = &Spider{
 			Keys := ctx.GetKeyin()
 			fmt.Println(Keys)
 			
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 5}, "Rule": "生成请求", "count": 0}, "生成请求")
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 6}, "Rule": "生成请求", "count": 0}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
