@@ -4,29 +4,10 @@ import (
 	// 基础包
 	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
-	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
-	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
 
-	// net包
-	// "net/http" //设置http.Header
-	// "net/url"
-
-	// 编码包
-	// "encoding/xml"
-	// "encoding/json"
-
-	// 字符串处理包
-	// "regexp"
 	"strconv"
-	// "strings"
-	// 其他包
 	 "fmt"
-	// "math"
-	// "time"
-	//"log"
-	//"log"
-	//"strings"
 	"strings"
 )
 
@@ -57,8 +38,22 @@ var Zxxt = &Spider{
 			
 			Keys := ctx.GetKeyin()
 			fmt.Println(Keys)
-			
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 6}, "Rule": "生成请求", "count": 0}, "生成请求")
+
+			webpage := 6
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+				
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求", "count": 0}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -92,16 +87,12 @@ var Zxxt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
-					Keys := ctx.GetKeyin()
-					fmt.Println(Keys)
-					
-					ss := query.Find(".info").Find("tbody").Find("tr")
+
+					ss := query.Find("#pageRight .info").Find("tbody").Find("tr")
 					
 					var page int
 					ctx.GetTemp("pages", &page)
-					
-							
+
 					count := 0
 					ss.Each(func(i int, goq *goquery.Selection) {
 						
@@ -109,9 +100,7 @@ var Zxxt = &Spider{
 						if titleLine != "产品名称" {
 							mingchen := goq.Children().Eq(1).Text()
 							jingzhi := strings.TrimSpace(goq.Children().Eq(3).Text())
-							//jingzhi := goq.Children().Eq(3).Text()
 							leijijingzhi := strings.TrimSpace(goq.Children().Eq(4).Text())
-							//leijijingzhi := goq.Children().Eq(4).Text()
 							guzhiriqi := goq.Children().Eq(7).Text()
 							
 							count++
