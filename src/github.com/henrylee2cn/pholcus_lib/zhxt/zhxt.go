@@ -26,6 +26,8 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"fmt"
+	"strings"
 )
 
 func init() {
@@ -52,7 +54,25 @@ var Zhxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 23}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 32
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -71,11 +91,11 @@ var Zhxt = &Spider{
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					page := 0
 
-					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
+					for loop := aid["loop"].([2]int); loop[0] <= loop[1]; loop[0]++ {
 						page++
 
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.zhtrust.com/front/fund/Product/findProductNetAll.do?gotoPage=" + strconv.Itoa(loop[0]),
+							Url:  "http://www.zhtrust.com/front/fund/Product/findProductNetAll.do?gotoPage=" + strconv.Itoa(loop[0]) + "&fundcode=undefined&_=1507647281504",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
 								"pages": page,
@@ -87,7 +107,7 @@ var Zhxt = &Spider{
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
 					
-					ss := query.Find(".content tbody").Find("tr")	
+					ss := query.Find(".content table#table1.price tbody").Find("tr")
 
 					var page int
 					ctx.GetTemp("pages", &page)
