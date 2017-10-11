@@ -26,6 +26,8 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"fmt"
+	"strings"
 )
 
 func init() {
@@ -52,13 +54,74 @@ var Xygjxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{0, 2}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 11
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"level1loop": [2]int{0, 2}, "level2loop": [2]int{0, webpage}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
+
+					level1page := 0
+					for loop := aid["level1loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
+						level1page++
+
+						ctx.AddQueue(&request.Request{
+							Url:  "http://www.ciit.com.cn/xingyetrust-web/netvalues/netvalue!getValue?type=" + strconv.Itoa(loop[0]),
+							Rule: aid["Rule"].(string),
+							Temp: map[string]interface{}{
+								"level1page" : level1page,
+								"level2loop": aid["level2loop"],
+							},
+						})
+					}
+
+					return nil
+				},
+
+				ParseFunc: func(ctx *Context) {
+
+					var level1page_ int
+					level1page := ctx.GetTemp("level1page", level1page_).(int)
+
+					var level2loop_ [2]int
+					level2loop := ctx.GetTemp("level2loop", level2loop_).([2]int)
+
+					level2page := 0
+					for loop := level2loop; loop[0] <= loop[1]; loop[0]++ {
+
+						level2page++
+						ctx.AddQueue(&request.Request{
+							Url:  "http://www.ciit.com.cn/xingyetrust-web/netvalues/netvalue!getValue?type=" + strconv.Itoa(level1page-1) + "&currentpage=" + strconv.Itoa(loop[0]),
+							Rule: "获取结果",
+							Temp: map[string]interface{}{
+								"level1page" : level1page,
+								"level2page": level2page,
+							},
+						})
+					}
+				},
+			},
+
+			"获取结果": {
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
 					"基金ID",
@@ -67,30 +130,10 @@ var Xygjxt = &Spider{
 					"累计净值",
 					"估值日期",
 				},
-				
-				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
-					level1page := 0
-					level2page := 0
-					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
-						level1page++
-                        for i:= 1; i < 11; i++{
-							level2page++
-                            ctx.AddQueue(&request.Request{
-                                    Url:  "http://www.ciit.com.cn/xingyetrust-web/netvalues/netvalue!getValue?type=" + strconv.Itoa(loop[0]) + "&currentpage=" + strconv.Itoa(i),
-                                    Rule: aid["Rule"].(string),
-									Temp: map[string]interface{}{
-										"level1pages" : level1page,
-										"level2pages": level2page,
-									},
-                                })
-                        } 
 
-					}
-					return nil
-				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
+
 					ss := query.Find(".pro_table tbody").Find("tr")
 
 					var level1page int
@@ -100,9 +143,9 @@ var Xygjxt = &Spider{
 					ctx.GetTemp("level2page", &level2page)
 
 					count := 0
-							
+
 					ss.Each(func(i int, goq *goquery.Selection) {
-						
+
 						titleLine := goq.Children().Eq(0).Text()
 						if titleLine != "序号" {
 							mingchen := goq.Children().Eq(1).Find("a").Text()
@@ -112,7 +155,7 @@ var Xygjxt = &Spider{
 
 							count++
 							fundID := "XTXINGYEGUOJI" + "P1" + strconv.Itoa(level1page) + "P2" + strconv.Itoa(level2page) + "L" + strconv.Itoa(count)
-						
+
 							ctx.Output(map[int]interface{}{
 								0: fundID,
 								1: mingchen,
