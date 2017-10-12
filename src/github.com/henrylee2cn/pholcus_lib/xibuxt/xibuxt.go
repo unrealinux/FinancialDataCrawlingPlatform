@@ -71,11 +71,11 @@ var Xibuxt = &Spider{
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					page := 0
 
-					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
+					for loop := aid["loop"].([2]int); loop[0] <= loop[1]; loop[0]++ {
 						page++
 
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.wti-xa.com/gongsixinwen_single_jingzhi.jsp",
+							Url:  "http://www.wti-xa.com/gongsixinwen_single_jingzhi.jsp?pageIndex=" + strconv.Itoa(loop[0]) + "&pageSize=10&pageFlag=3",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
 								"level1pages" : page,
