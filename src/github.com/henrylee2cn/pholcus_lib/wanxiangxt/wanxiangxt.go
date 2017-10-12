@@ -26,6 +26,7 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"strings"
 )
 
 func init() {
@@ -52,20 +53,30 @@ var Wanxiangxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 5}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 5
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
-				//注意：有无字段语义和是否输出数据必须保持一致
-				ItemFields: []string{
-					"名称",
-					"净值",
-					"累计净值",
-					"估值日期",
-				},
 				
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
                     
@@ -91,7 +102,7 @@ var Wanxiangxt = &Spider{
 					query := ctx.GetDom()
 					
 					ss := query.Find(".right_info_1 dl")
-                    fmt.Println(ss)
+                    //fmt.Println(ss)
 
 					var page2 int
 					ctx.GetTemp("level1pages", &page2)
@@ -100,22 +111,57 @@ var Wanxiangxt = &Spider{
 					ss.Each(func(i int, goq *goquery.Selection) {
                         
 						page++
-                        titleTxt := goq.Children().Eq(0).Text()
-                        fmt.Println(titleTxt)
-                        childNode := goq.Children().Eq(0).Children().Eq(1)
-                        fmt.Println(childNode)
-						if url, ok := goq.Children().Eq(0).Children().Eq(1).Attr("href"); ok {
-							ctx.AddQueue(&request.Request{
-								Url:  "http://www.wxtrust.com" + url,
-								Rule: "获取结果",
-                                Temp: map[string]interface{}{
-                                    "mingcheng":goq.Children().Eq(0).Children().Eq(1).Text(),
-									"level1pages" : page2,
-									"level2pages" : page,
-                                },
+						//fmt.Println(goq.Children())
+
+						goq.Children().Each(func(i int, goqchild *goquery.Selection){
+
+							//fmt.Println(goqchild.Text())
+
+							goqchild.Children().Each(func(i int, goqchildchild *goquery.Selection) {
+								//fmt.Println(goqchildchild)
+								//fmt.Println(goqchildchild.Text())
+
+								scripts := strings.Split(goqchildchild.Text(),";")
+
+								dateString := strings.TrimSpace(scripts[0])
+
+								beginIndex := strings.Index(dateString, "\"")
+								endIndex := strings.Index(dateString, "-")
+								dateString_1 := dateString[beginIndex+1:endIndex]
+								//fmt.Println(dateString_1)
+
+
+								hrefString := strings.TrimSpace(scripts[1])
+								hrefs := strings.Split(hrefString, "+")
+
+								beginIndex1 := strings.Index(hrefs[0], "/")
+								endIndex1 := strings.LastIndex(hrefs[0], "'")
+								tempString_ := hrefs[0][beginIndex1:endIndex1]
+								//fmt.Println(tempString_)
+
+								beginIndex2 := strings.Index(hrefs[2], "/")
+								endIndex2 := strings.Index(hrefs[2], "\"")
+								tempString__ := hrefs[2][beginIndex2:endIndex2]
+								//fmt.Println(tempString__)
+
+								beginIndex3 := strings.Index(hrefs[2], ">")
+								endIndex3 := strings.Index(hrefs[2], "<")
+								tempString___ := hrefs[2][beginIndex3+1:endIndex3]
+								//fmt.Println(tempString___)
+
+								fmt.Println("http://www.wxtrust.com"+tempString_+dateString_1+tempString__)
+
+								ctx.AddQueue(&request.Request{
+									Url:  "http://www.wxtrust.com"+tempString_+dateString_1+tempString__,
+									Rule: "获取结果",
+									Temp: map[string]interface{}{
+										"mingcheng":tempString___,
+										"level1pages" : page2,
+										"level2pages" : page,
+									},
+								})
 							})
-						}
-                        
+						})
 					})
 				},
 			},
@@ -132,10 +178,16 @@ var Wanxiangxt = &Spider{
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
 					
-					ss := query.Find("#customers tbody").Find("tr")
+					ss_ := query.Find("#customers tbody")
+					if ss_ == nil {
+						return
+					}
+
+					ss := ss_.Find("tr")
                     
                     var titleMingcheng string
                     ctx.GetTemp("mingcheng", &titleMingcheng)
+                    fmt.Println(titleMingcheng)
 
 					var page int
 					ctx.GetTemp("level1pages", &page)
@@ -145,10 +197,13 @@ var Wanxiangxt = &Spider{
                     
                     mingchen := titleMingcheng
 
+
+
 					count := 0	
                     ss.Each(func(i int, goq *goquery.Selection) {
                         						
-						    title := goq.Children().Eq(0).Text()
+						    title := strings.TrimSpace(goq.Children().Eq(0).Text())
+							fmt.Println(title)
                             
                             if title != "估值日期"{
                                 jingzhi := goq.Children().Eq(1).Text()
