@@ -109,7 +109,7 @@ var Xizhangxt = &Spider{
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
 					
-					ss := query.Find(".mainDetail tbody").Find("tr")
+					ss := query.Find(".mainDetail .productList tbody").Find("tr")
 
 					var page int
 					ctx.GetTemp("level1pages", &page)
