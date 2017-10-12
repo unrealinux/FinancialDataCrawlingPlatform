@@ -109,7 +109,7 @@ var Wukuangguojixt = &Spider{
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
 					
-					ss := query.Find(".productListTab tbody").Find("tr")
+					ss := query.Find(".about .productListTab tbody").Find("tr")
 
 					var page int
 					ctx.GetTemp("level1pages", &page)
