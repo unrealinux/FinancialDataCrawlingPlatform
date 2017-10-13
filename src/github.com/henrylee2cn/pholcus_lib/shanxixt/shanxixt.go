@@ -26,6 +26,7 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"strings"
 )
 
 func init() {
@@ -52,7 +53,25 @@ var Shanxixt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 15}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 17
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{

@@ -26,6 +26,8 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"fmt"
+	"strings"
 )
 
 func init() {
@@ -44,7 +46,24 @@ var Paxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求"}, "生成请求")
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 33
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求", "webpage":webpage}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -56,6 +75,9 @@ var Paxt = &Spider{
 						ctx.AddQueue(&request.Request{
 							Url:  "http://trust.pingan.com/xintuochanpinjingzhi/index.shtml",
 							Rule: aid["Rule"].(string),
+							Temp: map[string]interface{}{
+								"webpage": aid["webpage"],
+							},
 						})
 					}
 					return nil
@@ -64,7 +86,10 @@ var Paxt = &Spider{
 
 					page := 0
 
-                    for i:= 1; i < 34; i++{
+					var webpage int
+					ctx.GetTemp("webpage", &webpage)
+
+                    for i:= 1; i <= webpage; i++{
 						page++
 
                         ctx.AddQueue(&request.Request{

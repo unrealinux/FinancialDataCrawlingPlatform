@@ -26,6 +26,7 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"strconv"
 )
 
 func init() {
@@ -62,23 +63,25 @@ var Ljzgjxt = &Spider{
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.ljzitc.com.cn/news/cpjz/index.html",
+							Url:  "http://www.ljzitc.com.cn/news/cpjzsy/index.html",
 							Rule: aid["Rule"].(string),
 						})
 					}
 					return nil
 				},
+
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
+					fmt.Println(query)
 					
                     //ss := query.Find("pages")
                     //fmt.Println(ss)
-					ss := query.Find(".m-t-10.tableProc tbody").Find("tr")
+					ss := query.Find(".product_box.clearboth")
                     fmt.Println(ss)
 							
 					ss.Each(func(i int, goq *goquery.Selection) {
                                 
-						if url, ok := goq.Find("a").Attr("href"); ok {
+						if url, ok := goq.Attr("href"); ok {
 							ctx.AddQueue(&request.Request{
 								Url:  "http://www.ljzitc.com.cn/" + url,
 								Rule: "净值详情",
@@ -95,11 +98,14 @@ var Ljzgjxt = &Spider{
 					query := ctx.GetDom()
 					
 					ss := query.Find("ul").Find("li")
+					page := 0
 							
                     ss.Each(func(i int, goq *goquery.Selection) {
 						
 							mingcheng := goq.Children().Eq(0).Find("a").Text()
 							urlink := goq.Children().Eq(4).Find("a")
+
+							page++
 							
 							urlink.Each(func(i int, goq *goquery.Selection) {
 										
@@ -108,7 +114,8 @@ var Ljzgjxt = &Spider{
 											Url:  "http://www.dgxt.com/" + url,
 											Rule: "获取结果",
 											Temp: map[string]interface{}{
-											"mingcheng": mingcheng,
+												"mingcheng": mingcheng,
+												"level1pages" : page,
 											}, 
 										})
 								}
@@ -121,6 +128,7 @@ var Ljzgjxt = &Spider{
 			"获取结果": {
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
+					"基金ID",
 					"名称",
 					"净值",
 					"累计净值",
@@ -130,6 +138,11 @@ var Ljzgjxt = &Spider{
 					query := ctx.GetDom()
 					
 					ss := query.Find(".cot_fl ul").Find("li")
+
+					var page1 int
+					ctx.GetTemp("level1pages", &page1)
+
+					count := 0
 							
                     ss.Each(func(i int, goq *goquery.Selection) {
 						
@@ -142,12 +155,16 @@ var Ljzgjxt = &Spider{
 							jingzhi := divDetail.Children().Eq(1).Text()
 							leijijingzhi := divDetail.Children().Eq(2).Text()
 							guzhiriqi := divDetail.Children().Eq(0).Text()
+
+							count++
+							fundID := "XTLUJIAZUI" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
 						
 							ctx.Output(map[int]interface{}{
-								0: mingchen,
-								1: jingzhi,
-								2: leijijingzhi,
-								3: guzhiriqi,
+								0: fundID,
+								1: mingchen,
+								2: jingzhi,
+								3: leijijingzhi,
+								4: guzhiriqi,
 							})
 
 					})

@@ -26,6 +26,8 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"fmt"
+	"strings"
 )
 
 func init() {
@@ -34,7 +36,7 @@ func init() {
 
 var Changchengxinshengxt = &Spider{
 	Name:        "长城新盛信托",
-	Description: "长城新盛信托净值数据 [Auto Page] [www.zritc.com/InfomationDisciosure/Index]",
+	Description: "长城新盛信托净值数据 [Auto Page] [http://www.gwxstrust.com/cn/page.jsp?id=24&pageIndex=1]",
 	// Pausetime: 300,
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
@@ -52,7 +54,25 @@ var Changchengxinshengxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 10}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 5
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{

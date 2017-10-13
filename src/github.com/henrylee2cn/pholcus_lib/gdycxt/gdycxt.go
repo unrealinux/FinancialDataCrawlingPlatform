@@ -26,6 +26,8 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"fmt"
+	"strings"
 )
 
 func init() {
@@ -34,7 +36,7 @@ func init() {
 
 var Gdycxt = &Spider{
 	Name:        "粤财信托",
-	Description: "粤财信托净值数据 [Auto Page] [http://www.gdycxt.com/cn/page/41.html]",
+	Description: "粤财信托净值数据 [Auto Page] [http://www.utrusts.com/product/list_20.html]",
 	// Pausetime: 300,
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
@@ -52,19 +54,46 @@ var Gdycxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 15}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 18
+
+			var configs[]string
+			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a:=0; a < len(configs) ; a++  {
+
+				if strings.Contains(configs[a], "page="){
+					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
 
+				//注意：有无字段语义和是否输出数据必须保持一致
+				ItemFields: []string{
+					"基金ID",
+					"名称",
+					"净值",
+					"累计净值",
+					"估值日期",
+				},
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					page := 0
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						page++
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.gdycxt.com/cn/page/41.html?pageIndex=" + strconv.Itoa(loop[0]),
+							Url:  "http://www.utrusts.com/product/list_20_page_"+ strconv.Itoa(loop[0]) +".html" ,
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
 								"level1pages": page,
@@ -74,47 +103,9 @@ var Gdycxt = &Spider{
 					return nil
 				},
 				ParseFunc: func(ctx *Context) {
-					query := ctx.GetDom()
-
-					ss := query.Find("#content tbody").Find("tr")
-
-					var page1 int
-					ctx.GetTemp("level1pages", &page1)
-
-					page2 := 0
-
-					ss.Each(func(i int, goq *goquery.Selection) {
-
-						if url, ok := goq.Find("a").Attr("href"); ok {
-							page2++
-
-							ctx.AddQueue(&request.Request{
-								Url:  "http://www.gdycxt.com" + url,
-								Rule: "获取结果",
-								Temp: map[string]interface{}{
-									"level1pages": page1,
-									"level2pages": page2,
-								},
-							})
-						}
-
-					})
-				},
-			},
-
-			"获取结果": {
-				//注意：有无字段语义和是否输出数据必须保持一致
-				ItemFields: []string{
-					"基金ID",
-					"名称",
-					"净值",
-					"累计净值",
-					"估值日期",
-				},
-				ParseFunc: func(ctx *Context) {
 
 					queryResult := ctx.GetDom()
-					ssResult := queryResult.Find("#content tbody").Find("tr")
+					ssResult := queryResult.Find(".jingzhi .jz_ul").Find("li")
 
 					count := 0
 
