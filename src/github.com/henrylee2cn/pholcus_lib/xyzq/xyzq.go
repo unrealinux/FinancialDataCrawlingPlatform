@@ -14,14 +14,14 @@ import (
 
 	// 编码包
 	// "encoding/xml"
-	 "encoding/json"
+	"encoding/json"
 
 	// 字符串处理包
 	// "regexp"
 	"strconv"
 	// "strings"
 	// 其他包
-	 "fmt"
+	"fmt"
 	// "math"
 	// "time"
 	//"log"
@@ -40,15 +40,15 @@ var Xyzq = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "zhengquan"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -59,9 +59,9 @@ var Xyzq = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
-					
+
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						ctx.AddQueue(&request.Request{
 							Url:  "http://www.xyzq.com.cn/xyzq/assetcustody/GetProduct.do?flag=01&page=" + strconv.Itoa(loop[0]) + "&name=",
@@ -71,13 +71,12 @@ var Xyzq = &Spider{
 							},
 						})
 					}
-					
-					
+
 					return nil
 				},
-				
+
 				ParseFunc: func(ctx *Context) {
-					
+
 					jsonData := ctx.GetText()
 					infos := map[string]interface{}{}
 					err := json.Unmarshal([]byte(jsonData), &infos)
@@ -87,31 +86,31 @@ var Xyzq = &Spider{
 
 					var page int
 					ctx.GetTemp("level1pages", &page)
-					
+
 					for _, v := range infos {
 						switch vv := v.(type) {
 						case []interface{}:
 							for _, u := range vv {
-								
+
 								switch uu := u.(type) {
 								case map[string]interface{}:
-										mingchenValue := uu["name"].(string)
-										fundNoValue := uu["fundNo"].(string)
+									mingchenValue := uu["name"].(string)
+									fundNoValue := uu["fundNo"].(string)
 
-										page := 0
-										for i := 1; i < 11; i++ {
+									page := 0
+									for i := 1; i < 11; i++ {
 
-											page++
-											ctx.AddQueue(&request.Request{
-												Url:  "http://www.xyzq.com.cn/xyzq/assetcustody/GetProductValue.do?no=" + fundNoValue +"&page="+ strconv.Itoa(i),
-												Rule: "获取结果",
-												Temp: map[string]interface{}{
-													"mingchen": mingchenValue,
-													"level1pages" : page,
-													"level2pages": i,
-												},
-											})
-										}
+										page++
+										ctx.AddQueue(&request.Request{
+											Url:  "http://www.xyzq.com.cn/xyzq/assetcustody/GetProductValue.do?no=" + fundNoValue + "&page=" + strconv.Itoa(i),
+											Rule: "获取结果",
+											Temp: map[string]interface{}{
+												"mingchen":    mingchenValue,
+												"level1pages": page,
+												"level2pages": i,
+											},
+										})
+									}
 								default:
 									fmt.Println("unknown type")
 								}
@@ -124,7 +123,6 @@ var Xyzq = &Spider{
 				},
 			},
 
-			
 			"获取结果": {
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
@@ -147,7 +145,7 @@ var Xyzq = &Spider{
 					var page2 int
 					ctx.GetTemp("level2pages", &page2)
 					count := 0
-					
+
 					var jingzhiriqi string
 					var danweijingzhi float64
 					var leijijingzhi float64
@@ -158,41 +156,40 @@ var Xyzq = &Spider{
 							for _, u := range vv {
 								switch uu := u.(type) {
 								case map[string]interface{}:
-										for _, noValue := range uu{
-											switch noValueV := noValue.(type) {
-											case map[string]interface{}:
-													{
-														danweijingzhi = noValueV["fundValue"].(float64)
-														leijijingzhi = noValueV["fundValue1"].(float64)
-														jingzhiriqi = noValueV["valueTime"].(string)
-													}
-													
-													count++
-													fundID := "XTDUIWAIJINGJIMAOYI" + "P1" + strconv.Itoa(page) + "P2" + strconv.Itoa(page2) + "L" + strconv.Itoa(count)		
-
-													ctx.GetTemp("mingchen", &mingchen)
-													ctx.Output(map[int]interface{}{
-														0: fundID,
-														1: mingchen,
-														2: danweijingzhi,
-														3: leijijingzhi,
-														4: jingzhiriqi,
-													})
-											default:
-												fmt.Println("unknown type")
+									for _, noValue := range uu {
+										switch noValueV := noValue.(type) {
+										case map[string]interface{}:
+											{
+												danweijingzhi = noValueV["fundValue"].(float64)
+												leijijingzhi = noValueV["fundValue1"].(float64)
+												jingzhiriqi = noValueV["valueTime"].(string)
 											}
+
+											count++
+											fundID := "XTDUIWAIJINGJIMAOYI" + "P1" + strconv.Itoa(page) + "P2" + strconv.Itoa(page2) + "L" + strconv.Itoa(count)
+
+											ctx.GetTemp("mingchen", &mingchen)
+											ctx.Output(map[int]interface{}{
+												0: fundID,
+												1: mingchen,
+												2: danweijingzhi,
+												3: leijijingzhi,
+												4: jingzhiriqi,
+											})
+										default:
+											fmt.Println("unknown type")
 										}
-									default:
-										fmt.Println("unknown type")
 									}
+								default:
+									fmt.Println("unknown type")
 								}
-							default:
-								fmt.Println("unknown type")
 							}
+						default:
+							fmt.Println("unknown type")
 						}
+					}
 				},
 			},
-			
 		},
 	},
 }

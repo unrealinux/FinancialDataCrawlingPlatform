@@ -134,12 +134,12 @@ var Gmxt = &Spider{
 					var page2 int
 					ctx.GetTemp("level2pages", &page2)
 
+					var titleMingCheng string
+					titleMingCheng = ctx.GetTemp("title", &titleMingCheng).(string)
+
 					ssResult.Each(func(i int, goq *goquery.Selection) {
 
 						titleLineResult := goq.Children().Eq(0).Text()
-
-						var titleMingCheng string
-						ctx.GetTemp("title", &titleMingCheng)
 
 						if titleLineResult != "日期" && titleLineResult != "" {
 

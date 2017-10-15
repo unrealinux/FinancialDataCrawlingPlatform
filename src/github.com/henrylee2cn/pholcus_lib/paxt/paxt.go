@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -41,7 +41,15 @@ var Paxt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
+
+	Namespace: func(*Spider) string {
+		return "xintuo"
+	},
+	// 子命名空间相对于表名，可依赖具体数据内容，可选
+	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
+		return "fund_src_nav"
+	},
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -51,25 +59,25 @@ var Paxt = &Spider{
 
 			webpage := 33
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 
 			}
 
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求", "webpage":webpage}, "生成请求")
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求", "webpage": webpage}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						ctx.AddQueue(&request.Request{
@@ -87,19 +95,19 @@ var Paxt = &Spider{
 					page := 0
 
 					var webpage int
-					ctx.GetTemp("webpage", &webpage)
+					webpage = ctx.GetTemp("webpage", &webpage).(int)
 
-                    for i:= 1; i <= webpage; i++{
+					for i := 1; i <= webpage; i++ {
 						page++
 
-                        ctx.AddQueue(&request.Request{
-                            Url:  "http://trust.pingan.com/xintuochanpinjingzhi/index.shtml?trustNo=&trustName=&currentPageNo="+ strconv.Itoa(i) +"&cooID=&type=",
-                            Rule: "获取结果",
+						ctx.AddQueue(&request.Request{
+							Url:  "http://trust.pingan.com/xintuochanpinjingzhi/index.shtml?trustNo=&trustName=&currentPageNo=" + strconv.Itoa(i) + "&cooID=&type=",
+							Rule: "获取结果",
 							Temp: map[string]interface{}{
-								"level1pages" : page,
+								"level1pages": page,
 							},
-                        })
-                    }
+						})
+					}
 				},
 			},
 
@@ -114,27 +122,26 @@ var Paxt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
+
 					ss := query.Find(".not_special_key_word tbody").Find("tr")
 
 					var page1 int
 					ctx.GetTemp("level1pages", &page1)
 
 					count := 0
-							
-                    ss.Each(func(i int, goq *goquery.Selection) {
-                        					
-                            	
+
+					ss.Each(func(i int, goq *goquery.Selection) {
+
 						titleLine := goq.Children().Eq(0).Text()
 						if titleLine != "产品名称" {
-							mingchen := goq.Children().Eq(0).Text()
+							mingchen := strings.TrimSpace(goq.Children().Eq(0).Text())
 							jingzhi := goq.Children().Eq(2).Text()
 							leijijingzhi := goq.Children().Eq(3).Text()
 							guzhiriqi := goq.Children().Eq(5).Text()
 
 							count++
 							fundID := "XTPINGAN" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
-						
+
 							ctx.Output(map[int]interface{}{
 								0: fundID,
 								1: mingchen,
@@ -147,7 +154,6 @@ var Paxt = &Spider{
 					})
 				},
 			},
-			
 		},
 	},
 }

@@ -60,13 +60,13 @@ var Changchengxinshengxt = &Spider{
 
 			webpage := 5
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 
@@ -114,8 +114,8 @@ var Changchengxinshengxt = &Spider{
 
 					ss.Each(func(i int, goq *goquery.Selection) {
 
-						titleLine := goq.Children().Eq(0).Text()
-						if titleLine != "产品名称" {
+						titleLine := strings.TrimSpace(goq.Children().Eq(0).Text())
+						if titleLine != "产品名称" && titleLine != "" && titleLine != "12345"{
 							mingchen := goq.Children().Eq(0).Text()
 							jingzhi := goq.Children().Eq(1).Text()
 							leijijingzhi := goq.Children().Eq(1).Text()

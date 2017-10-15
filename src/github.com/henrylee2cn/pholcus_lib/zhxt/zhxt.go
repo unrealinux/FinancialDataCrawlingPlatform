@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -21,7 +21,7 @@ import (
 	"strconv"
 	// "strings"
 	// 其他包
-	 //"fmt"
+	//"fmt"
 	// "math"
 	// "time"
 	//"log"
@@ -41,15 +41,15 @@ var Zhxt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -58,15 +58,15 @@ var Zhxt = &Spider{
 			Keys := ctx.GetKeyin()
 			fmt.Println(Keys)
 
-			webpage := 32
+			webpage := 33
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 
@@ -78,7 +78,7 @@ var Zhxt = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
 					"基金ID",
@@ -87,11 +87,11 @@ var Zhxt = &Spider{
 					"累计净值",
 					"估值日期",
 				},
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					page := 0
 
-					for loop := aid["loop"].([2]int); loop[0] <= loop[1]; loop[0]++ {
+					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						page++
 
 						ctx.AddQueue(&request.Request{
@@ -106,7 +106,7 @@ var Zhxt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
+
 					ss := query.Find(".content table#table1.price tbody").Find("tr")
 
 					var page int
@@ -124,7 +124,7 @@ var Zhxt = &Spider{
 
 							count++
 							fundID := "XTZHONGHAI" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
-						
+
 							ctx.Output(map[int]interface{}{
 								0: fundID,
 								1: mingchen,
@@ -133,7 +133,6 @@ var Zhxt = &Spider{
 								4: guzhiriqi,
 							})
 						}
-
 
 					})
 				},

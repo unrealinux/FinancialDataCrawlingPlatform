@@ -60,13 +60,13 @@ var Bohaiguojixt = &Spider{
 
 			webpage := 5
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 

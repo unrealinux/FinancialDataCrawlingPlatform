@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -39,15 +39,15 @@ var Jygjxt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -58,7 +58,7 @@ var Jygjxt = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
 					"基金ID",
@@ -67,7 +67,7 @@ var Jygjxt = &Spider{
 					"累计净值",
 					"估值日期",
 				},
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					page := 0
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
@@ -76,7 +76,7 @@ var Jygjxt = &Spider{
 							Url:  "http://www.bocommtrust.com/index.php?id=209",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
-								"level1pages" : page,
+								"level1pages": page,
 							},
 						})
 					}
@@ -84,31 +84,31 @@ var Jygjxt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
+
 					ss := query.Find(".number_tablebox li")
 
 					var page1 int
 					ctx.GetTemp("level1pages", &page1)
 
 					count := 0
-							
+
 					ss.Each(func(i int, goq *goquery.Selection) {
-						
-                        mingchen := goq.Children().Eq(1).Text()
-                        jingzhi := goq.Children().Eq(2).Text()
-                        leijijingzhi := goq.Children().Eq(2).Text()
-                        guzhiriqi := goq.Children().Eq(3).Text()
+
+						mingchen := goq.Children().Eq(1).Text()
+						jingzhi := goq.Children().Eq(2).Text()
+						leijijingzhi := goq.Children().Eq(2).Text()
+						guzhiriqi := goq.Children().Eq(3).Text()
 
 						count++
 						fundID := "XTJIAOYINGUOJI" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
-                    
-                        ctx.Output(map[int]interface{}{
-								0: fundID,
-								1: mingchen,
-								2: jingzhi,
-								3: leijijingzhi,
-								4: guzhiriqi,
-                        })
+
+						ctx.Output(map[int]interface{}{
+							0: fundID,
+							1: mingchen,
+							2: jingzhi,
+							3: leijijingzhi,
+							4: guzhiriqi,
+						})
 					})
 				},
 			},

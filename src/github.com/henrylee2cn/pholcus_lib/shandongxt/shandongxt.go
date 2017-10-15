@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -21,7 +21,7 @@ import (
 	"strconv"
 	// "strings"
 	// 其他包
-	 //"fmt"
+	//"fmt"
 	// "math"
 	// "time"
 	//"log"
@@ -41,15 +41,15 @@ var Shandongxt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -60,13 +60,13 @@ var Shandongxt = &Spider{
 
 			webpage := 19
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 
@@ -78,7 +78,7 @@ var Shandongxt = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
 					"基金ID",
@@ -87,7 +87,7 @@ var Shandongxt = &Spider{
 					"累计净值",
 					"估值日期",
 				},
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					page := 0
 
@@ -99,7 +99,7 @@ var Shandongxt = &Spider{
 							Url:  "http://www.sitic.com.cn/chart-web/chart/trustnettable!getAllProductNetValue?fundcode=&from=&to=&pages=" + strconv.Itoa(loop[0]) + "-15&fundname=",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
-								"level1pages" : page,
+								"level1pages": page,
 							},
 						})
 					}
@@ -110,8 +110,8 @@ var Shandongxt = &Spider{
 
 					var page1 int
 					ctx.GetTemp("level1pages", &page1)
-					
-					ss := query.Find("#dataTable tbody").Find("tr")	
+
+					ss := query.Find("#dataTable tbody").Find("tr")
 
 					count := 0
 
@@ -122,13 +122,13 @@ var Shandongxt = &Spider{
 
 							count++
 
-							mingchen := goq.Children().Eq(0).Text()
-							jingzhi := goq.Children().Eq(1).Text()
-							leijijingzhi := goq.Children().Eq(2).Text()
-							guzhiriqi := goq.Children().Eq(3).Text()
+							mingchen := strings.TrimSpace(goq.Children().Eq(0).Text())
+							jingzhi := strings.TrimSpace(goq.Children().Eq(1).Text())
+							leijijingzhi := strings.TrimSpace(goq.Children().Eq(2).Text())
+							guzhiriqi := strings.TrimSpace(goq.Children().Eq(3).Text())
 
 							fundID := "XTSHANDONG" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
-						
+
 							ctx.Output(map[int]interface{}{
 								0: fundID,
 								1: mingchen,
@@ -137,7 +137,6 @@ var Shandongxt = &Spider{
 								4: guzhiriqi,
 							})
 						}
-
 
 					})
 				},

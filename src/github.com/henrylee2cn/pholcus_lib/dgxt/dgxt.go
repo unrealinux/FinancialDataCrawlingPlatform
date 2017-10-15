@@ -26,6 +26,7 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"strings"
 )
 
 func init() {
@@ -52,7 +53,25 @@ var Dgxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 20
+
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a := 0; a < len(configs); a++ {
+
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求", "webpage" : webpage}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -65,17 +84,22 @@ var Dgxt = &Spider{
 						ctx.AddQueue(&request.Request{
 							Url:  "http://www.dgxt.com/xthxxlt/index.html",
 							Rule: aid["Rule"].(string),
+							Temp: map[string]interface{}{
+								"webpage":aid["webpage"],
+							},
 						})
 					}
 					return nil
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-
-					//ss := query.Find("pages")
 					//fmt.Println(ss)
-					ss := query.Find(".pages a")
+
+					ss := query.Find(".xmcnfds a")
 					fmt.Println(ss)
+
+					var webpage int
+					webpage = ctx.GetTemp("webpage", webpage).(int)
 
 					page1 := 0
 
@@ -89,6 +113,8 @@ var Dgxt = &Spider{
 								Rule: "净值详情",
 								Temp: map[string]interface{}{
 									"level1pages": page1,
+									"level1url" : "http://www.dgxt.com/" + url,
+									"webpage" : ctx.GetTemp("webpage", webpage),
 								},
 							})
 						}
@@ -105,9 +131,30 @@ var Dgxt = &Spider{
 					ss := query.Find("ul").Find("li")
 
 					var page1 int
-					ctx.GetTemp("level1pages", &page1)
+					page1 = ctx.GetTemp("level1pages", &page1).(int)
+					var level2url string
+					level2url = ctx.GetTemp("level1url", &level2url).(string)
+
+					var webpage int
+					webpage = ctx.GetTemp("level1pages", &webpage).(int)
 
 					page2 := 0
+
+					for i:= 0; i < webpage; i++{
+
+						page2++
+
+						ctx.AddQueue(&request.Request{
+							Url:  level2url + "&pageNo=" + strconv.Itoa(i),
+							Rule: "获取结果",
+							Temp: map[string]interface{}{
+								"level1pages": page1,
+								"level2pages": page2,
+							},
+						})
+
+
+					}
 
 					ss.Each(func(i int, goq *goquery.Selection) {
 
@@ -150,6 +197,8 @@ var Dgxt = &Spider{
 
 					ss := query.Find(".cot_fl ul").Find("li")
 
+					titleMingCheng := query.Find(".uynb").Text();
+
 					count := 0
 
 					var page int
@@ -161,9 +210,6 @@ var Dgxt = &Spider{
 					ss.Each(func(i int, goq *goquery.Selection) {
 
 						divDetail := goq.Children().Eq(0)
-
-						var titleMingCheng string
-						ctx.GetTemp("mingcheng", &titleMingCheng)
 
 						mingchen := titleMingCheng
 						jingzhi := divDetail.Children().Eq(1).Text()

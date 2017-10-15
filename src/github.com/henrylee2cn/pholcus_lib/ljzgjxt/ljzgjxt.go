@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -21,7 +21,7 @@ import (
 	//"strconv"
 	// "strings"
 	// 其他包
-	 "fmt"
+	"fmt"
 	// "math"
 	// "time"
 	//"log"
@@ -40,15 +40,15 @@ var Ljzgjxt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -59,7 +59,7 @@ var Ljzgjxt = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						ctx.AddQueue(&request.Request{
@@ -73,58 +73,58 @@ var Ljzgjxt = &Spider{
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
 					fmt.Println(query)
-					
-                    //ss := query.Find("pages")
-                    //fmt.Println(ss)
+
+					//ss := query.Find("pages")
+					//fmt.Println(ss)
 					ss := query.Find(".product_box.clearboth")
-                    fmt.Println(ss)
-							
+					fmt.Println(ss)
+
 					ss.Each(func(i int, goq *goquery.Selection) {
-                                
+
 						if url, ok := goq.Attr("href"); ok {
 							ctx.AddQueue(&request.Request{
 								Url:  "http://www.ljzitc.com.cn/" + url,
 								Rule: "净值详情",
 							})
 						}
-                        
+
 					})
 				},
 			},
 
 			"净值详情": {
-				
+
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
+
 					ss := query.Find("ul").Find("li")
 					page := 0
-							
-                    ss.Each(func(i int, goq *goquery.Selection) {
-						
-							mingcheng := goq.Children().Eq(0).Find("a").Text()
-							urlink := goq.Children().Eq(4).Find("a")
 
-							page++
-							
-							urlink.Each(func(i int, goq *goquery.Selection) {
-										
-								if url, ok := goq.Attr("href"); ok {
-										ctx.AddQueue(&request.Request{
-											Url:  "http://www.dgxt.com/" + url,
-											Rule: "获取结果",
-											Temp: map[string]interface{}{
-												"mingcheng": mingcheng,
-												"level1pages" : page,
-											}, 
-										})
-								}
-								
-							})
+					ss.Each(func(i int, goq *goquery.Selection) {
+
+						mingcheng := goq.Children().Eq(0).Find("a").Text()
+						urlink := goq.Children().Eq(4).Find("a")
+
+						page++
+
+						urlink.Each(func(i int, goq *goquery.Selection) {
+
+							if url, ok := goq.Attr("href"); ok {
+								ctx.AddQueue(&request.Request{
+									Url:  "http://www.dgxt.com/" + url,
+									Rule: "获取结果",
+									Temp: map[string]interface{}{
+										"mingcheng":   mingcheng,
+										"level1pages": page,
+									},
+								})
+							}
+
+						})
 					})
 				},
 			},
-			
+
 			"获取结果": {
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
@@ -136,41 +136,40 @@ var Ljzgjxt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
+
 					ss := query.Find(".cot_fl ul").Find("li")
 
 					var page1 int
 					ctx.GetTemp("level1pages", &page1)
 
 					count := 0
-							
-                    ss.Each(func(i int, goq *goquery.Selection) {
-						
-							divDetail := goq.Children().Eq(0)
 
-							var titleMingCheng string
-							ctx.GetTemp("mingcheng", &titleMingCheng)
-							
-							mingchen := titleMingCheng
-							jingzhi := divDetail.Children().Eq(1).Text()
-							leijijingzhi := divDetail.Children().Eq(2).Text()
-							guzhiriqi := divDetail.Children().Eq(0).Text()
+					ss.Each(func(i int, goq *goquery.Selection) {
 
-							count++
-							fundID := "XTLUJIAZUI" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
-						
-							ctx.Output(map[int]interface{}{
-								0: fundID,
-								1: mingchen,
-								2: jingzhi,
-								3: leijijingzhi,
-								4: guzhiriqi,
-							})
+						divDetail := goq.Children().Eq(0)
+
+						var titleMingCheng string
+						ctx.GetTemp("mingcheng", &titleMingCheng)
+
+						mingchen := titleMingCheng
+						jingzhi := divDetail.Children().Eq(1).Text()
+						leijijingzhi := divDetail.Children().Eq(2).Text()
+						guzhiriqi := divDetail.Children().Eq(0).Text()
+
+						count++
+						fundID := "XTLUJIAZUI" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
+
+						ctx.Output(map[int]interface{}{
+							0: fundID,
+							1: mingchen,
+							2: jingzhi,
+							3: leijijingzhi,
+							4: guzhiriqi,
+						})
 
 					})
 				},
 			},
-			
 		},
 	},
 }

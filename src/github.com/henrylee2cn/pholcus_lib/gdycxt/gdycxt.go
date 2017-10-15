@@ -60,13 +60,13 @@ var Gdycxt = &Spider{
 
 			webpage := 18
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 
@@ -93,7 +93,7 @@ var Gdycxt = &Spider{
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						page++
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.utrusts.com/product/list_20_page_"+ strconv.Itoa(loop[0]) +".html" ,
+							Url:  "http://www.utrusts.com/product/list_20_page_" + strconv.Itoa(loop[0]) + ".html",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
 								"level1pages": page,

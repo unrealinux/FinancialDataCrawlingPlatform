@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -41,15 +41,15 @@ var Xygjxt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -60,13 +60,13 @@ var Xygjxt = &Spider{
 
 			webpage := 11
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 
@@ -88,7 +88,7 @@ var Xygjxt = &Spider{
 							Url:  "http://www.ciit.com.cn/xingyetrust-web/netvalues/netvalue!getValue?type=" + strconv.Itoa(loop[0]),
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
-								"level1page" : level1page,
+								"level1page": level1page,
 								"level2loop": aid["level2loop"],
 							},
 						})
@@ -113,7 +113,7 @@ var Xygjxt = &Spider{
 							Url:  "http://www.ciit.com.cn/xingyetrust-web/netvalues/netvalue!getValue?type=" + strconv.Itoa(level1page-1) + "&currentpage=" + strconv.Itoa(loop[0]),
 							Rule: "获取结果",
 							Temp: map[string]interface{}{
-								"level1page" : level1page,
+								"level1page": level1page,
 								"level2page": level2page,
 							},
 						})

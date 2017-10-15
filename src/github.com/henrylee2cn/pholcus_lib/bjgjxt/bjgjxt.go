@@ -34,7 +34,7 @@ func init() {
 
 var Bjgjxt = &Spider{
 	Name:        "北京国际信托",
-	Description: "北京国际信托净值数据 [Auto Page] [http://www.bjitic.com/asp/YG/getPro1.asp]",
+	Description: "北京国际信托净值数据 [Auto Page] [https://www.bjitic.com/sun_product.html]",
 	// Pausetime: 300,
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
@@ -73,7 +73,7 @@ var Bjgjxt = &Spider{
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						page++
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.bjitic.com/asp/YG/getPro1.asp",
+							Url:  "https://www.bjitic.com/sun_product.html",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
 								"level1pages": page,
@@ -85,7 +85,7 @@ var Bjgjxt = &Spider{
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
 
-					ss := query.Find("table").Find("tr")
+					ss := query.Find("#top_list tbody").Find("tr")
 
 					var page1 int
 					ctx.GetTemp("level1pages", &page1)
@@ -95,7 +95,7 @@ var Bjgjxt = &Spider{
 					ss.Each(func(i int, goq *goquery.Selection) {
 
 						titleLine := goq.Children().Eq(0).Text()
-						if titleLine != "信托计划名称" {
+						if titleLine != "产品名称" {
 							mingchen := goq.Children().Eq(0).Text()
 							jingzhi := goq.Children().Eq(3).Text()
 							leijijingzhi := goq.Children().Eq(3).Text()

@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -21,7 +21,7 @@ import (
 	"strconv"
 	// "strings"
 	// 其他包
-	 "fmt"
+	"fmt"
 	// "math"
 	// "time"
 	//"log"
@@ -39,15 +39,15 @@ var Wukuangguojixt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -70,30 +70,30 @@ var Wukuangguojixt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
-                    //ss := query.Find("pages")
-                    //fmt.Println(ss)
+
+					//ss := query.Find("pages")
+					//fmt.Println(ss)
 					ss := query.Find("#_pageSum")
 					var countStr string
 					countStr = ss.Text()
 					var count int
 					count, error := strconv.Atoi(countStr)
-					if error != nil{
+					if error != nil {
 						fmt.Println("string convert failed")
 					}
-					
+
 					page := 0
 
-				 	for i := 1; i < count + 1; i++{
-						 page++
-						 	ctx.AddQueue(&request.Request{
-								Url:  "http://www.mintrust.com/wkxtweb/product/page_networth?netWorthPage.pageSize=10&netWorthPage.pageNum=" + strconv.Itoa(i),
-								Rule: "获取结果",
-								Temp: map[string]interface{}{
-									"level1pages" : page,
-								},
-							})
-					 }	
+					for i := 1; i < count+1; i++ {
+						page++
+						ctx.AddQueue(&request.Request{
+							Url:  "http://www.mintrust.com/wkxtweb/product/page_networth?netWorthPage.pageSize=10&netWorthPage.pageNum=" + strconv.Itoa(i),
+							Rule: "获取结果",
+							Temp: map[string]interface{}{
+								"level1pages": page,
+							},
+						})
+					}
 				},
 			},
 
@@ -108,39 +108,37 @@ var Wukuangguojixt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
+
 					ss := query.Find(".about .productListTab tbody").Find("tr")
 
 					var page int
 					ctx.GetTemp("level1pages", &page)
 
 					count := 0
-							
-                    ss.Each(func(i int, goq *goquery.Selection) {
-                        					
-							titleLine := goq.Children().Eq(0).Text()
-							if titleLine != "产品名称"{
-								mingchen := goq.Children().Eq(0).Find("a").Text()
-								jingzhi := goq.Children().Eq(1).Text()
-								leijijingzhi := goq.Children().Eq(1).Text()
-								guzhiriqi := goq.Children().Eq(3).Text()
 
+					ss.Each(func(i int, goq *goquery.Selection) {
 
-								count++
-								fundID := "XTWUKUANGGUOJI" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
-							
-								ctx.Output(map[int]interface{}{
-									0: fundID,
-									1: mingchen,
-									2: jingzhi,
-									3: leijijingzhi,
-									4: guzhiriqi,
-								})
-							}
+						titleLine := goq.Children().Eq(0).Text()
+						if titleLine != "产品名称" {
+							mingchen := goq.Children().Eq(0).Find("a").Text()
+							jingzhi := goq.Children().Eq(1).Text()
+							leijijingzhi := goq.Children().Eq(1).Text()
+							guzhiriqi := goq.Children().Eq(3).Text()
+
+							count++
+							fundID := "XTWUKUANGGUOJI" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+
+							ctx.Output(map[int]interface{}{
+								0: fundID,
+								1: mingchen,
+								2: jingzhi,
+								3: leijijingzhi,
+								4: guzhiriqi,
+							})
+						}
 					})
 				},
 			},
-			
 		},
 	},
 }

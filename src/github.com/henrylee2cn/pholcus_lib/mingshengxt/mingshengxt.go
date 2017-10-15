@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -41,15 +41,15 @@ var Mingshengxt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -58,15 +58,15 @@ var Mingshengxt = &Spider{
 			Keys := ctx.GetKeyin()
 			fmt.Println(Keys)
 
-			webpage := 5
+			webpage := 6
 
-			var configs[]string
-			configs = strings.Split(Keys, ",")//各种配置按照key1=value1,key2=value2,...的形式解析
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
 
-			for a:=0; a < len(configs) ; a++  {
+			for a := 0; a < len(configs); a++ {
 
-				if strings.Contains(configs[a], "page="){
-					webpage,_ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
 					fmt.Println(webpage)
 				}
 
@@ -78,7 +78,7 @@ var Mingshengxt = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
 					"基金ID",
@@ -87,7 +87,7 @@ var Mingshengxt = &Spider{
 					"累计净值",
 					"估值日期",
 				},
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 
 					page := 0
@@ -96,27 +96,30 @@ var Mingshengxt = &Spider{
 						page++
 
 						ctx.AddQueue(&request.Request{
-							Url:  "http://www.msxt.com/?jzgb/page/" + strconv.Itoa(loop[0]) + ".html" ,
+							Url:  "http://www.msxt.com/?jzgb/page/" + strconv.Itoa(loop[0]) + ".html",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
-								"level1pages" : page,
+								"level1pages": page,
 							},
 						})
 					}
 					return nil
 				},
 				ParseFunc: func(ctx *Context) {
+
 					query := ctx.GetDom()
-					
-					ss := query.Find(".jzgb").Find("tr")
+					fmt.Println(query.Text())
+
+					ss := query.Find(".jzgb table tbody").Find("tr")
+					fmt.Println(ss)
 
 					var page1 int
 					ctx.GetTemp("level1pages", &page1)
 
 					count := 0
-							
+
 					ss.Each(func(i int, goq *goquery.Selection) {
-						
+
 						titleLine := goq.Children().Eq(0).Text()
 						if titleLine != "序号" {
 							mingchen := goq.Children().Eq(1).Find("a").Text()
@@ -126,7 +129,7 @@ var Mingshengxt = &Spider{
 
 							count++
 							fundID := "XTMINGSHENG" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
-						
+
 							ctx.Output(map[int]interface{}{
 								0: fundID,
 								1: mingchen,
@@ -135,7 +138,6 @@ var Mingshengxt = &Spider{
 								4: guzhiriqi,
 							})
 						}
-
 
 					})
 				},

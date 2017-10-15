@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -21,11 +21,12 @@ import (
 	"strconv"
 	// "strings"
 	// 其他包
-	 //"fmt"
+	//"fmt"
 	// "math"
 	// "time"
 	//"log"
 	//"log"
+	"strings"
 )
 
 func init() {
@@ -39,15 +40,15 @@ var Jinguguojixt = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "xintuo"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -58,7 +59,7 @@ var Jinguguojixt = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
 					"基金ID",
@@ -67,7 +68,7 @@ var Jinguguojixt = &Spider{
 					"累计净值",
 					"估值日期",
 				},
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 
 					page := 0
@@ -77,7 +78,7 @@ var Jinguguojixt = &Spider{
 							Url:  "http://www.jingutrust.com/jgxt/common/informationsProductVal.jsp",
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
-								"level1pages" : page,
+								"level1pages": page,
 							},
 						})
 					}
@@ -85,8 +86,8 @@ var Jinguguojixt = &Spider{
 				},
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
-					
-					ss := query.Find(".product_li_1")	
+
+					ss := query.Find(".product_li_1")
 
 					var page1 int
 					ctx.GetTemp("level1pages", &page1)
@@ -97,14 +98,14 @@ var Jinguguojixt = &Spider{
 
 						titleLine := goq.Children().Eq(0).Find("a").Text()
 						if titleLine != "产品名称" {
-							mingchen := goq.Children().Eq(0).Find("a").Text()
-							jingzhi := goq.Children().Eq(1).Text()
-							leijijingzhi := goq.Children().Eq(1).Text()
-							guzhiriqi := goq.Children().Eq(3).Text()
+							mingchen := strings.TrimSpace(goq.Children().Eq(0).Find("a").Text())
+							jingzhi := strings.TrimSpace(goq.Children().Eq(1).Text())
+							leijijingzhi := strings.TrimSpace(goq.Children().Eq(1).Text())
+							guzhiriqi := strings.TrimSpace(goq.Children().Eq(3).Text())
 
 							count++
 							fundID := "XTJINGUGUOJI" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
-						
+
 							ctx.Output(map[int]interface{}{
 								0: fundID,
 								1: mingchen,
@@ -113,7 +114,6 @@ var Jinguguojixt = &Spider{
 								4: guzhiriqi,
 							})
 						}
-
 
 					})
 				},

@@ -2,8 +2,8 @@ package pholcus_lib
 
 import (
 	// 基础包
-	"github.com/henrylee2cn/pholcus/common/goquery"                        //DOM解析
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
+	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	. "github.com/henrylee2cn/pholcus/app/spider" //必需
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
@@ -19,9 +19,9 @@ import (
 	// 字符串处理包
 	// "regexp"
 	//"strconv"
-	 "strings"
+	"strings"
 	// 其他包
-	 "fmt"
+	"fmt"
 	// "math"
 	// "time"
 	//"log"
@@ -40,15 +40,15 @@ var Zhongshanzq = &Spider{
 	// Keyin:   KEYIN,
 	// Limit:        LIMIT,
 	NotDefaultField: true,
-	
-	Namespace: func(*Spider) string{
+
+	Namespace: func(*Spider) string {
 		return "zhengquan"
 	},
 	// 子命名空间相对于表名，可依赖具体数据内容，可选
 	SubNamespace: func(self *Spider, dataCell map[string]interface{}) string {
 		return "fund_src_nav"
 	},
-	
+
 	EnableCookie: false,
 	RuleTree: &RuleTree{
 
@@ -59,43 +59,41 @@ var Zhongshanzq = &Spider{
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
-				
+
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
-					
+
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						ctx.AddQueue(&request.Request{
 							Url:  "http://ov.zszq.com/product/jh1/jh1-1.asp",
 							Rule: aid["Rule"].(string),
 						})
 					}
-					
-					
+
 					return nil
 				},
-				
+
 				ParseFunc: func(ctx *Context) {
-					
-                    query := ctx.GetDom()
-                    
-                    ss := query.Find(".bg tbody").Find("tr")
-                    
-                    ss.Each(func(i int, goq *goquery.Selection){
-                        
-                        url, exist := goq.Children().Eq(0).Find("a").Attr("href")
-                        if exist == true {
-							
+
+					query := ctx.GetDom()
+
+					ss := query.Find(".bg tbody").Find("tr")
+
+					ss.Each(func(i int, goq *goquery.Selection) {
+
+						url, exist := goq.Children().Eq(0).Find("a").Attr("href")
+						if exist == true {
+
 							strings.Replace(url, "1.asp", "4.asp", -1)
-							
-                            ctx.AddQueue(&request.Request{
-							Url:  "http://ov.zszq.com" + url,
-							Rule: "获取结果",
-						    })
-                        }
-                    })
+
+							ctx.AddQueue(&request.Request{
+								Url:  "http://ov.zszq.com" + url,
+								Rule: "获取结果",
+							})
+						}
+					})
 				},
 			},
 
-			
 			"获取结果": {
 				ParseFunc: func(ctx *Context) {
 					query := ctx.GetDom()
@@ -103,7 +101,6 @@ var Zhongshanzq = &Spider{
 					fmt.Println(ss)
 				},
 			},
-			
 		},
 	},
 }
