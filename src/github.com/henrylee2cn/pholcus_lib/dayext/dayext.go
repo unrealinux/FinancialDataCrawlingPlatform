@@ -26,6 +26,8 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"fmt"
+	"strings"
 )
 
 func init() {
@@ -52,48 +54,31 @@ var Dayext = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 3
+
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a := 0; a < len(configs); a++ {
+
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 3}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
 
 			"生成请求": {
 
-				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
-					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
-						ctx.AddQueue(&request.Request{
-							Url:  "http://www.dytrustee.com/xxpl/jzgg/",
-							Rule: aid["Rule"].(string),
-						})
-					}
-					return nil
-				},
-				ParseFunc: func(ctx *Context) {
-					query := ctx.GetDom()
-
-					ss := query.Find(".disc01").Find("li")
-
-					page := 0
-
-					ss.Each(func(i int, goq *goquery.Selection) {
-
-						if url, ok := goq.Find("a").Attr("href"); ok {
-							page++
-
-							ctx.AddQueue(&request.Request{
-								Url:  "http://www.dytrustee.com" + url,
-								Rule: "获取结果",
-								Temp: map[string]interface{}{
-									"level1pages": page,
-								},
-							})
-						}
-
-					})
-				},
-			},
-
-			"获取结果": {
 				//注意：有无字段语义和是否输出数据必须保持一致
 				ItemFields: []string{
 					"基金ID",
@@ -102,39 +87,52 @@ var Dayext = &Spider{
 					"累计净值",
 					"估值日期",
 				},
-				ParseFunc: func(ctx *Context) {
 
+				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
+
+					page1 := 0
+					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
+
+						page1++
+
+						ctx.AddQueue(&request.Request{
+							Url:  "http://www.dytrustee.com/Product_zz.aspx?page="+strconv.Itoa(loop[0]),
+							Rule: aid["Rule"].(string),
+							Temp:	map[string]interface{}{
+								"page1":page1,
+							},
+						})
+					}
+					return nil
+				},
+				ParseFunc: func(ctx *Context) {
 					queryResult := ctx.GetDom()
 
-					mingcheng := queryResult.Find(".artiTitl h1").Text()
-
-					ssResult := queryResult.Find(".articont tbody").Find("tr")
-
 					var page1 int
-					ctx.GetTemp("level1pages", &page1)
+					page1 = ctx.GetTemp("page1", &page1).(int)
+
+					ssResult := queryResult.Find("div table tbody").Find("tr")
+					fmt.Println(ssResult)
 
 					count := 0
 
 					ssResult.Each(func(i int, goq *goquery.Selection) {
 
-						titleLineResult := goq.Children().Eq(0).Text()
-						if titleLineResult != "产品名称" && titleLineResult != "" {
+						mingcheng := goq.Children().Eq(0).Text()
+						jingzhi := goq.Children().Eq(1).Text()
+						leijijingzhi := goq.Children().Eq(2).Text()
+						guzhiriqi := goq.Children().Eq(3).Text()
 
-							jingzhi := goq.Children().Eq(1).Text()
-							leijijingzhi := goq.Children().Eq(1).Text()
-							guzhiriqi := goq.Children().Eq(3).Text()
+						count++
+						fundID := "XTDAYE" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
 
-							count++
-							fundID := "XTDAYE" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
-
-							ctx.Output(map[int]interface{}{
-								0: fundID,
-								1: mingcheng,
-								2: jingzhi,
-								3: leijijingzhi,
-								4: guzhiriqi,
-							})
-						}
+						ctx.Output(map[int]interface{}{
+							0: fundID,
+							1: mingcheng,
+							2: jingzhi,
+							3: leijijingzhi,
+							4: guzhiriqi,
+						})
 
 					})
 				},

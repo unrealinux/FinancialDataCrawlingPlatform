@@ -27,6 +27,7 @@ import (
 	//"log"
 	//"log"
 	"strings"
+	"encoding/json"
 )
 
 func init() {
@@ -92,22 +93,44 @@ var Hxgjxt = &Spider{
 					query := ctx.GetText()
 					fmt.Println(query)
 
-					//query := ctx.GetDom()
+					strlen := len(query)
+					jsonIndex := strings.Index(query, "(")
+					jsonResult := query[jsonIndex:strlen]
 
-					/*
-						ss := query.Find("div#NewsList.List dl.FloatDiv.ff")
+					var infos []map[string]interface{}
+					err := json.Unmarshal([]byte(jsonResult), &infos)
+					if err != nil {
+						return
+					}
 
-						ss.Each(func(i int, goq *goquery.Selection) {
+					var jingzhiriqi string
+					var danweijingzhi string
+					var leijijingzhi string
+					var mingchen string
 
-							if url, ok := goq.Find("a").Attr("href"); ok {
-								ctx.AddQueue(&request.Request{
-									Url:  "http://www.cfitc.com/" + url,
-									Rule: "获取结果",
-								})
-							}
+					count := 0
 
+					var page int
+					page = ctx.GetTemp("level1pages", &page).(int)
+
+					for _, uu := range infos {
+
+						mingchen = uu["TITLE"].(string)
+						danweijingzhi = uu["string2"].(string)
+						leijijingzhi = uu["string2"].(string)
+						jingzhiriqi = uu["string3"].(string)
+
+						count++
+						fundID := "XTHUAXINGUOJI" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+
+						ctx.Output(map[int]interface{}{
+							0: fundID,
+							1: mingchen,
+							2: danweijingzhi,
+							3: leijijingzhi,
+							4: jingzhiriqi,
 						})
-					*/
+					}
 				},
 			},
 

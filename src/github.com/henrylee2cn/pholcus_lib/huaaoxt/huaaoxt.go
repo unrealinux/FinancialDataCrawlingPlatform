@@ -109,8 +109,11 @@ var Huaaoxt = &Spider{
 						url, exist := goq.Find("a").Attr("href")
 						if exist {
 							page2++
+
+							newUrl := strings.Replace(url, "-", "/", 2)
+							newUrl1 := strings.Replace(newUrl, "_", "/", 1)
 							ctx.AddQueue(&request.Request{
-								Url:  "http://www.huaao-trust.com" + url,
+								Url:  "http://www.huaao-trust.com" + newUrl1,
 								Rule: "获取结果",
 
 								Temp: map[string]interface{}{

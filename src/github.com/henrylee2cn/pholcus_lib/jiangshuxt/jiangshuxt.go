@@ -26,6 +26,7 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"strings"
 )
 
 func init() {
@@ -100,14 +101,14 @@ var Jiangshuxt = &Spider{
 
 						style, exist := goq.Attr("style")
 
-						if exist && style == "height:30px;" && count < 3 {
+						if exist && style == "height:30px;" && count < 7 {
 							count++
 							titleLine := goq.Children().Eq(0).Text()
 							if titleLine != "产品名称" {
-								mingchen := goq.Children().Eq(0).Text()
-								jingzhi := goq.Children().Eq(2).Text()
-								leijijingzhi := goq.Children().Eq(2).Text()
-								guzhiriqi := goq.Children().Eq(1).Text()
+								mingchen := strings.TrimSpace(goq.Children().Eq(0).Text())
+								jingzhi := strings.TrimSpace(goq.Children().Eq(2).Text())
+								leijijingzhi := strings.TrimSpace(goq.Children().Eq(2).Text())
+								guzhiriqi := strings.TrimSpace(goq.Children().Eq(1).Text())
 
 								fundID := "XTJIANGSHU" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(recordCount)
 

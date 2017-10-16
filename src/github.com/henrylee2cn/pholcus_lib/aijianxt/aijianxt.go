@@ -4,7 +4,6 @@ import (
 	// 基础包
 	"github.com/henrylee2cn/pholcus/app/downloader/request" //必需
 	. "github.com/henrylee2cn/pholcus/app/spider"           //必需
-	"github.com/henrylee2cn/pholcus/common/goquery"         //DOM解析
 	// "github.com/henrylee2cn/pholcus/logs"           //信息输出
 	// . "github.com/henrylee2cn/pholcus/app/spider/common" //选用
 
@@ -26,6 +25,9 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"encoding/json"
+	"fmt"
+	"strings"
 )
 
 func init() {
@@ -74,7 +76,6 @@ var Aijianxt = &Spider{
 						page++
 						ctx.AddQueue(&request.Request{
 							Url: "http://www.ajxt.com.cn/ajQuery/query.jsp?query=getNetvalue&channelId=77&query1=null",
-							//Url:  "http://www.ajxt.com.cn/Channel/3755?_tp_ptpro=" + strconv.Itoa(loop[0]),
 							Rule: aid["Rule"].(string),
 							Temp: map[string]interface{}{
 								"level1pages": page,
@@ -84,37 +85,45 @@ var Aijianxt = &Spider{
 					return nil
 				},
 				ParseFunc: func(ctx *Context) {
-					query := ctx.GetDom()
 
-					ss := query.Find(".table_css tbody").Find("tr")
 
-					var page1 int
-					ctx.GetTemp("level1pages", &page1)
+					jsonData := strings.TrimSpace(ctx.GetText())
+					fmt.Println(jsonData)
+
+					var infos []map[string]interface{}
+					err := json.Unmarshal([]byte(jsonData), &infos)
+					if err != nil {
+						return
+					}
+
+					var jingzhiriqi string
+					var danweijingzhi string
+					var leijijingzhi string
+					var mingchen string
 
 					count := 0
 
-					ss.Each(func(i int, goq *goquery.Selection) {
+					var page int
+					page = ctx.GetTemp("level1pages", &page).(int)
 
-						titleLine := goq.Children().Eq(0).Text()
-						if titleLine != "产品名称" {
-							mingchen := goq.Children().Eq(0).Text()
-							jingzhi := goq.Children().Eq(1).Text()
-							leijijingzhi := goq.Children().Eq(1).Text()
-							guzhiriqi := goq.Children().Eq(2).Text()
+					for _, uu := range infos {
 
-							count++
-							fundID := "XTBEIJINGGUOJI" + "P1" + strconv.Itoa(page1) + "L" + strconv.Itoa(count)
+								mingchen = uu["string1"].(string)
+								danweijingzhi = uu["string2"].(string)
+								leijijingzhi = uu["string2"].(string)
+								jingzhiriqi = uu["string3"].(string)
 
-							ctx.Output(map[int]interface{}{
-								0: fundID,
-								1: mingchen,
-								2: jingzhi,
-								3: leijijingzhi,
-								4: guzhiriqi,
-							})
+								count++
+								fundID := "XTAIJIAN" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+
+								ctx.Output(map[int]interface{}{
+									0: fundID,
+									1: mingchen,
+									2: danweijingzhi,
+									3: leijijingzhi,
+									4: jingzhiriqi,
+								})
 						}
-
-					})
 				},
 			},
 		},
