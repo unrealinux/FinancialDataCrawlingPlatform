@@ -137,10 +137,10 @@ var Xygjxt = &Spider{
 					ss := query.Find(".pro_table tbody").Find("tr")
 
 					var level1page int
-					ctx.GetTemp("level1page", &level1page)
+					level1page = ctx.GetTemp("level1page", &level1page).(int)
 
 					var level2page int
-					ctx.GetTemp("level2page", &level2page)
+					level2page = ctx.GetTemp("level2page", &level2page).(int)
 
 					count := 0
 

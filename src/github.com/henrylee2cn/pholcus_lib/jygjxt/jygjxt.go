@@ -88,7 +88,7 @@ var Jygjxt = &Spider{
 					ss := query.Find(".number_tablebox li")
 
 					var page1 int
-					ctx.GetTemp("level1pages", &page1)
+					page1 = ctx.GetTemp("level1pages", &page1).(int)
 
 					count := 0
 

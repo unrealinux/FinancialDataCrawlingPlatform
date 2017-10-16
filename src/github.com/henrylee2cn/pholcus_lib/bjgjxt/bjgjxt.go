@@ -88,7 +88,7 @@ var Bjgjxt = &Spider{
 					ss := query.Find("#top_list tbody").Find("tr")
 
 					var page1 int
-					ctx.GetTemp("level1pages", &page1)
+					page1 = ctx.GetTemp("level1pages", &page1).(int)
 
 					count := 0
 

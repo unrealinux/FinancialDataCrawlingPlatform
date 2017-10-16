@@ -90,7 +90,7 @@ var Xibuxt = &Spider{
 					ss := query.Find("#main tbody").Find("tr")
 
 					var page int
-					ctx.GetTemp("level1pages", &page)
+					page = ctx.GetTemp("level1pages", &page).(int)
 
 					count := 0
 
@@ -104,7 +104,7 @@ var Xibuxt = &Spider{
 							guzhiriqi := goq.Children().Eq(5).Text()
 
 							count++
-							fundID := "XTXIBU" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+							fundID := "XTXIBU" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
 
 							ctx.Output(map[int]interface{}{
 								0: fundID,

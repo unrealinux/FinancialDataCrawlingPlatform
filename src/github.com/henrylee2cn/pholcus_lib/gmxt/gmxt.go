@@ -129,10 +129,10 @@ var Gmxt = &Spider{
 					count := 0
 
 					var page int
-					ctx.GetTemp("level1pages", &page)
+					page = ctx.GetTemp("level1pages", &page).(int)
 
 					var page2 int
-					ctx.GetTemp("level2pages", &page2)
+					page2 = ctx.GetTemp("level2pages", &page2).(int)
 
 					var titleMingCheng string
 					titleMingCheng = ctx.GetTemp("title", &titleMingCheng).(string)

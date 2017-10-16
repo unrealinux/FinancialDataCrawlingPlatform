@@ -100,7 +100,7 @@ var Zhongtiext = &Spider{
 					fmt.Println(infos)
 
 					var page int
-					ctx.GetTemp("pages", &page)
+					page = ctx.GetTemp("pages", &page).(int)
 
 					var mingchen string
 					var jingzhi string
@@ -130,7 +130,7 @@ var Zhongtiext = &Spider{
 										guzhiriqi = uu["Wjzrq"].(string)
 
 										count++
-										fundID := "XTZHONGTIE" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+										fundID := "XTZHONGTIE" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
 
 										ctx.Output(map[int]interface{}{
 											0: fundID,

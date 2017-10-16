@@ -126,7 +126,7 @@ var Xizhangxt = &Spider{
 							guzhiriqi := goq.Children().Eq(7).Text()
 
 							count++
-							fundID := "XTXIZANG" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+							fundID := "XTXIZANG" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
 
 							ctx.Output(map[int]interface{}{
 								0: fundID,

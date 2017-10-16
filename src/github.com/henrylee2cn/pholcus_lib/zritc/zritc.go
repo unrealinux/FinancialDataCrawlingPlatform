@@ -110,7 +110,7 @@ var Zritc = &Spider{
 					ss := query.Find("#tableQuery table tbody").Find("tr")
 
 					var page int
-					ctx.GetTemp("pages", &page)
+					page = ctx.GetTemp("pages", &page).(int)
 
 					count := 0
 
@@ -125,7 +125,7 @@ var Zritc = &Spider{
 
 							count++
 
-							fundID := "XTZHONGRONG" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+							fundID := "XTZHONGRONG" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
 
 							ctx.Output(map[int]interface{}{
 								0: fundID,

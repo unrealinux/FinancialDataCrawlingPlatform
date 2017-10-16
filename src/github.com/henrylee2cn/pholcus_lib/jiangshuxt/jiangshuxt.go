@@ -94,7 +94,7 @@ var Jiangshuxt = &Spider{
 					recordCount := 0
 
 					var page1 int
-					ctx.GetTemp("level1pages", &page1)
+					page1 = ctx.GetTemp("level1pages", &page1).(int)
 
 					count := 0
 					ss.Each(func(i int, goq *goquery.Selection) {

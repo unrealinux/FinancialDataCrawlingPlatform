@@ -109,7 +109,7 @@ var Shandongxt = &Spider{
 					query := ctx.GetDom()
 
 					var page1 int
-					ctx.GetTemp("level1pages", &page1)
+					page1 = ctx.GetTemp("level1pages", &page1).(int)
 
 					ss := query.Find("#dataTable tbody").Find("tr")
 

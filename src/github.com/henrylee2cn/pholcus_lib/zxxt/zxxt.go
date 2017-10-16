@@ -53,7 +53,7 @@ var Zxxt = &Spider{
 
 			}
 
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求", "count": 0}, "生成请求")
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, webpage}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -91,7 +91,7 @@ var Zxxt = &Spider{
 					ss := query.Find("#pageRight .info").Find("tbody").Find("tr")
 
 					var page int
-					ctx.GetTemp("pages", &page)
+					page = ctx.GetTemp("pages", &page).(int)
 
 					count := 0
 					ss.Each(func(i int, goq *goquery.Selection) {
@@ -105,7 +105,7 @@ var Zxxt = &Spider{
 
 							count++
 
-							fundID := "XTZHONGXIN" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+							fundID := "XTZHONGXIN" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
 
 							ctx.Output(map[int]interface{}{
 								0: fundID,

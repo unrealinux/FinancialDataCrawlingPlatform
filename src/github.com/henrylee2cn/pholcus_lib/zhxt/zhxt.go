@@ -110,7 +110,7 @@ var Zhxt = &Spider{
 					ss := query.Find(".content table#table1.price tbody").Find("tr")
 
 					var page int
-					ctx.GetTemp("pages", &page)
+					page = ctx.GetTemp("pages", &page).(int)
 
 					count := 0
 					ss.Each(func(i int, goq *goquery.Selection) {
@@ -123,7 +123,7 @@ var Zhxt = &Spider{
 							guzhiriqi := goq.Children().Eq(3).Text()
 
 							count++
-							fundID := "XTZHONGHAI" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+							fundID := "XTZHONGHAI" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
 
 							ctx.Output(map[int]interface{}{
 								0: fundID,

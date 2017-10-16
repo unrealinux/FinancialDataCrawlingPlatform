@@ -26,6 +26,7 @@ import (
 	// "time"
 	//"log"
 	//"log"
+	"strings"
 )
 
 func init() {
@@ -52,7 +53,25 @@ var Zgdwjjmyxt = &Spider{
 	RuleTree: &RuleTree{
 
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求"}, "生成请求")
+
+			Keys := ctx.GetKeyin()
+			fmt.Println(Keys)
+
+			webpage := 11401
+
+			var configs []string
+			configs = strings.Split(Keys, ",") //各种配置按照key1=value1,key2=value2,...的形式解析
+
+			for a := 0; a < len(configs); a++ {
+
+				if strings.Contains(configs[a], "page=") {
+					webpage, _ = strconv.Atoi(strings.TrimLeft(Keys, "page="))
+					fmt.Println(webpage)
+				}
+
+			}
+
+			ctx.Aid(map[string]interface{}{"loop": [2]int{1, 2}, "Rule": "生成请求", "pages":webpage}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -64,13 +83,19 @@ var Zgdwjjmyxt = &Spider{
 					ctx.AddQueue(&request.Request{
 						Url:  "http://www.fotic.com.cn/tabid/141/Default.aspx",
 						Rule: aid["Rule"].(string),
+						Temp: map[string]interface{}{
+							"pages":aid["pages"],
+						},
 					})
 					return nil
 				},
 				ParseFunc: func(ctx *Context) {
 
+					var webpage int
+					webpage = ctx.GetTemp("pages", &webpage).(int)
+
 					page := 0
-					for i := 1; i <= 11400; i++ {
+					for i := 1; i < webpage; i++ {
 
 						page++
 						ctx.AddQueue(&request.Request{
@@ -104,7 +129,7 @@ var Zgdwjjmyxt = &Spider{
 					}
 
 					var page int
-					ctx.GetTemp("pages", &page)
+					page = ctx.GetTemp("pages", &page).(int)
 					count := 0
 
 					var jingzhiriqi string
@@ -125,7 +150,7 @@ var Zgdwjjmyxt = &Spider{
 									}
 
 									count++
-									fundID := "XTDUIWAIJINGJIMAOYI" + "P" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
+									fundID := "XTDUIWAIJINGJIMAOYI" + "P1" + strconv.Itoa(page) + "L" + strconv.Itoa(count)
 
 									ctx.Output(map[int]interface{}{
 										0: fundID,
